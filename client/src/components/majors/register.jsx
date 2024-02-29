@@ -100,11 +100,11 @@ const RegisterForm = () => {
                     {errors.phone?.message && <p style={{ color: 'red' }}>{errors.phone.message}</p>}
 
                     <p>Password</p>
-                    <input  type='password' placeholder='+234' {...register('password')}/>
+                    <input  type='password' placeholder='Enter password' {...register('password')}/>
                     {errors.password?.message && <p style={{ color: 'red' }}>{errors.password.message}</p>}
 
                     <p>Confirm password</p>
-                    <input  type='password' placeholder='+234' {...register('cpassword')}/>
+                    <input  type='password' placeholder='Re-enter password' {...register('cpassword')}/>
                     {errors.cpassword?.message && <p style={{ color: 'red' }}>{errors.cpassword.message}</p>}
 
                     <div className='checkbox-group'>

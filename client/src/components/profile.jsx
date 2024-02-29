@@ -31,7 +31,10 @@ const ProfileDisplay = () => {
         {isShowForm && <UploadProfilePicture show={displayForm} handleClose={closeDisplayForm} />}
         <span className="profile-header">Display setting</span>
         <div className="display-setting">
+
             <UpdateProfileImage />
+
+            
             <p className="profile-name">{`${name} ${surname}`}</p>
             <div className="profile-badge">
             <span>Premium plan</span>
