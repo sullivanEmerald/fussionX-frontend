@@ -9,7 +9,6 @@ const UpdateProfileImage = () => {
         <>
             <Link to={'/profile'}>
                 <img src={userProfilePicture !== "" ? userProfilePicture : '/images/dashboard/default.jpeg'} className="profile-photo"  alt="logo" />
-                {userProfilePicture !== '' && <button>Sullivan</button>}
             </Link>
         </>
     )

@@ -55,7 +55,6 @@ const UploadImageForm = (props) => {
             const formData = new FormData();
             formData.append('profilePicture', data.profilePicture[0]);
 
-            console.log(formData)
             const response = await fetch('/users/image', {
                 method: 'POST',
                 body: formData,

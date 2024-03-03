@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { UserRecords } from "../App";
 import UploadProfilePicture from "../modals/profile";
 import UpdateProfileImage from "./profile/image";
+import { UserImage } from "../App";
 
 const ProfileDisplay = () => {
   const { getUser } = useContext(UserRecords);
   const [isShowForm, setShowForm] = useState(false);
+  const {userProfilePicture} = useContext(UserImage)
 
   const displayForm = () => {
     setShowForm(true);
@@ -40,10 +42,14 @@ const ProfileDisplay = () => {
             <span>Premium plan</span>
             <img src="/images/dashboard/king.png" className="" alt="logo" />
             </div>
-            <div className="profile-picture">
-            <img src="/images/icons/Export.png" className="remove-style-button change-images" alt="logo" />
-            <span onClick={displayForm}>Change Profile Picture</span>
-            </div>
+            {userProfilePicture !== '' ?
+              <p>Sullivan</p>
+             :
+             <button onClick={displayForm} className="profile-picture">
+             <img src="/images/icons/Export.png" className="remove-style-button change-images" alt="logo" />
+             <span>Change Profile Picture</span>
+            </button>
+             }
             <div className="delete-picture">
             <img src="/images/icons/delete.png" className="remove-style-button " alt="logo" />
             <span>Delete Account</span>
