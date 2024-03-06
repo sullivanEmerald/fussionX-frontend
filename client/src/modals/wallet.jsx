@@ -6,8 +6,10 @@ const WalletModal = (props) => {
     return (
         <>
             <Modal show={show} onHide={handleClose} dialogClassName="wallet-modal">
+
                 <FundWalletForm handleClose={handleClose} />
-        </Modal>
+                
+            </Modal>
         </>
     )
 }

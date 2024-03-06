@@ -1,9 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext, useState, createContext } from "react";
 import { Link } from "react-router-dom";
 import { UserRecords } from "../App";
 import UploadProfilePicture from "../modals/profile";
 import UpdateProfileImage from "./profile/image";
 import { UserImage } from "../App";
+import ChangeProfilePicture from "../modals/renew";
+
+export const UserFormerImage = createContext()
 
 const ProfileDisplay = () => {
   const { getUser } = useContext(UserRecords);
@@ -29,8 +32,15 @@ const ProfileDisplay = () => {
   
 
   return (
+        <UserFormerImage.Provider value={{ userProfilePicture }}>
         <div>
-        {isShowForm && <UploadProfilePicture show={displayForm} handleClose={closeDisplayForm} />}
+        {isShowForm ? (
+            userProfilePicture !== "" ? (
+              <ChangeProfilePicture show={displayForm} handleClose={closeDisplayForm} />
+            ) : (
+              <UploadProfilePicture show={displayForm} handleClose={closeDisplayForm} />
+            )
+          ) : null}
         <span className="profile-header">Display setting</span>
         <div className="display-setting">
 
@@ -42,14 +52,18 @@ const ProfileDisplay = () => {
             <span>Premium plan</span>
             <img src="/images/dashboard/king.png" className="" alt="logo" />
             </div>
+
             {userProfilePicture !== '' ?
-              <p>Sullivan</p>
+              <button onClick={() => displayForm()} className="change-profile-picture-button">
+                <img src="/images/dashboard/plus.png" className="" alt="logo" />
+              </button>
              :
-             <button onClick={displayForm} className="profile-picture">
-             <img src="/images/icons/Export.png" className="remove-style-button change-images" alt="logo" />
-             <span>Change Profile Picture</span>
-            </button>
-             }
+              <button onClick={() => displayForm() } className="profile-picture">
+                <img src="/images/icons/Export.png" className="remove-style-button change-images" alt="logo" />
+                <span>Change Profile Picture</span>
+              </button>
+              }
+
             <div className="delete-picture">
             <img src="/images/icons/delete.png" className="remove-style-button " alt="logo" />
             <span>Delete Account</span>
@@ -57,6 +71,8 @@ const ProfileDisplay = () => {
             <Link className="upgrade-link">Upgrade Plan</Link>
         </div>
         </div>
+
+        </UserFormerImage.Provider>
   );
 };
 

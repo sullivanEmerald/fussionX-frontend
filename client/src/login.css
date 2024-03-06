@@ -258,10 +258,16 @@
 }
 
 .profile-photo{
-  height: 60px;
-  width: 60px;
+  height: 65px;
+  width: 65px;
   border-radius: 50%;
   border: 1px solid #D76504;
+}
+
+#renew-photo{
+  width: 75px;
+  height: 75px;
+  border-width: 2px;
 }
 
 .profile-funds{
@@ -1054,9 +1060,9 @@
 .display-setting{
   width: 274px;
   height: 471px;
-  top: 10px;
   border-radius: 10px;
   background: #14100D;
+  position: relative;
 
   display: flex;
   flex-direction: column;
@@ -1090,6 +1096,28 @@
   line-height: 20.83px;
   padding: 8px;
   cursor: pointer;
+}
+
+
+.change-profile-picture-button{
+  border: 2px solid #FF6C04;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background: #000;
+  top:15%;
+  right: 39%;
+}
+
+.view-former-image{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .delete-picture{

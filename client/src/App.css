@@ -1130,3 +1130,7 @@ padding: 20px;
   line-height: 18.88px;
   color: #FFFFFF;
 }
+
+.change-profile-picture-button{
+  border: 1px solid red;
+}
