@@ -1,15 +1,19 @@
 
 import ProfileDisplay from '../profile';
 import { useUsers } from '../../context/user';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, createContext } from 'react';
 import { UserRecords } from '../../App';
 import UserProfileInformations from '../majors/userprofile';
 
-const ProfileInformations = () => {
+
+export const FeedBackContext =  createContext()
+
+const   ProfileInformations = () => {
     const {users} =  useUsers() 
     const {getUser} =  useContext(UserRecords)
     const [userInfo, setUserInfo] = useState({})
-    console.log(userInfo)
+    const [feedBack, setFeedBack] = useState('')
+  
 
     useEffect(() => {
         if (getUser?.id) {
@@ -20,8 +24,11 @@ const ProfileInformations = () => {
     }, [getUser, users]);
 
     const { email, phone, surname, name } = userInfo;
+
     return (    
         <>
+            <FeedBackContext.Provider value={{ feedBack, setFeedBack}}>
+
             <section className="profile-info-sect">
 
                 <ProfileDisplay />
@@ -55,6 +62,8 @@ const ProfileInformations = () => {
                         </div>
                 </div>
             </section>
+
+            </FeedBackContext.Provider>
         </>
     )
 }

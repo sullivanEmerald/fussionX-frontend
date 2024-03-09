@@ -1047,6 +1047,21 @@
 }
 
 
+.profile-setting-main{
+  margin: 3% 0;
+  position: relative;
+  padding: 30px 0;
+}
+
+.profile-setting-main > p {
+  color: green;
+  position: absolute;
+  top: 0;
+  left: 40%;
+  font-size: 20px;
+  font-weight: 700;
+}
+
 .profile-info-sect{
   display: flex;
   justify-content: flex-start;
@@ -1054,7 +1069,6 @@
   font-family: DM Sans;
   width: 100%;
   gap: 10px;
-  padding: 50px 0;
 }
 
 .display-setting{

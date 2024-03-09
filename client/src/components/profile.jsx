@@ -8,11 +8,13 @@ import ChangeProfilePicture from "../modals/renew";
 
 export const UserFormerImage = createContext()
 
+
 const ProfileDisplay = () => {
   const { getUser } = useContext(UserRecords);
   const [isShowForm, setShowForm] = useState(false);
   const {userProfilePicture} = useContext(UserImage)
-
+  const [feedBack, setFeedBack] = useState('')
+   
   const displayForm = () => {
     setShowForm(true);
   };
@@ -32,8 +34,9 @@ const ProfileDisplay = () => {
   
 
   return (
-        <UserFormerImage.Provider value={{ userProfilePicture }}>
+        <UserFormerImage.Provider value={{ userProfilePicture, setFeedBack }}>
         <div>
+
         {isShowForm ? (
             userProfilePicture !== "" ? (
               <ChangeProfilePicture show={displayForm} handleClose={closeDisplayForm} />
@@ -41,11 +44,12 @@ const ProfileDisplay = () => {
               <UploadProfilePicture show={displayForm} handleClose={closeDisplayForm} />
             )
           ) : null}
+          
         <span className="profile-header">Display setting</span>
+
         <div className="display-setting">
 
             <UpdateProfileImage />
-
             
             <p className="profile-name">{`${name} ${surname}`}</p>
             <div className="profile-badge">

@@ -1,23 +1,25 @@
 import ProfileDisplay from '../profile';
 import UserSetting from '../majors/usersetting';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import ChangePassword from '../majors/setpassword';
 import { ProfileToggle } from '../majors/userprofile';
 
 const UserProfileDetails = () => {
     const [error, setError] = useState('')
+    
     return (
         <>
-        <section className="profile-info-sect display-profile-setting">
-
-        <ProfileDisplay />
+            <main className='profile-setting-main'>
+                <section className="profile-info-sect display-profile-setting">
+                    
+                <ProfileDisplay />
 
         <div>
             <span className='profile-header'>Profile setting</span>
 
                 {error !== '' && <span style={{ color : 'red'}}>{error}</span>}
 
-                <UserSetting profileSetting={false}  />
+                <UserSetting profileSetting={false} />
             
                 <ChangePassword />
 
@@ -31,6 +33,7 @@ const UserProfileDetails = () => {
                 </div>
         </div>
     </section>
+            </main>
 
         {/* MODALS */}
 

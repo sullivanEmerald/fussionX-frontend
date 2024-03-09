@@ -56,8 +56,8 @@ const ChangeProfileForm = ({ handleClose}) => {
 
             if (response.ok) {
                 const { userNewImage, msg , user} = await response.json()  
-                setImages(images.map((item) => item.userId = user ? {...item, image : userNewImage.image, cloudinaryId : userNewImage.cloudinaryId } : item))
                 setUserImage(userNewImage.image)
+                setImages(images.map((item) => item.userId = user ? {...item, image : userNewImage.image, cloudinaryId : userNewImage.cloudinaryId } : item))
                 handleClose()
             } else {
                 const {error} = await response.json(); 
