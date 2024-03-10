@@ -2,17 +2,17 @@ import UserSetting from "./usersetting";
 import { useState, createContext } from "react";
 
 
-export const ProfileToggle = createContext()
-
 const UserProfileInformations = ({email, name, surname, phone}) => {
 
     const [showSetting, setShowSetting] = useState(false)
 
     return (
         <>  
-             <ProfileToggle.Provider value={{ setShowSetting}}>
+
             {showSetting ? (
-                <UserSetting profileSetting={true} setShowSetting={setShowSetting} /> 
+
+                <UserSetting /> 
+
             ) : (
                 <div className='profile-details'>
                     <div>
@@ -37,7 +37,6 @@ const UserProfileInformations = ({email, name, surname, phone}) => {
                 <button onClick={() => setShowSetting(true)} className='edit-button'>Edit Profile</button>
             </div>
             )}
-             </ProfileToggle.Provider>
         </>
     )
 }
