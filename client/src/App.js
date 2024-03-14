@@ -44,6 +44,7 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [getUser, setUser] = useState(null);
   const [userProfilePicture, setUserImage] = useState('')
+  const [toggleDetails, setToggleDetails] =  useState(false)
 
 
   useEffect(() => {
@@ -87,8 +88,8 @@ function App() {
               <Route path='/payment' element={<Search />} />
               <Route path='/bonus' element={<Bonus />} />
               <Route path='/active' element={<Active />} />
-              <Route path='/settings' element={<DisplayProfile />} />
-              <Route path='/profile' element={<Setting />} />
+              <Route path='/settings' element={<DisplayProfile isToggle={toggleDetails} setIsToggle={setToggleDetails} />} />
+              <Route path='/profile' element={<Setting isToggle={toggleDetails} setIsToggle={setToggleDetails}/>} />
               <Route path='/verify' element={<VerifyRoute />} />
               <Route path='/notverify' element={<Notverified />} />
               <Route path='/password' element={<Passsword />} /> 

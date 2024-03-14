@@ -1,20 +1,20 @@
-
 import ProfileDisplay from '../profile';
 import { useUsers } from '../../context/user';
-import { useState, useEffect, useContext, createContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { UserRecords } from '../../App';
 import UserProfileInformations from '../majors/userprofile';
+import UserSetting from '../majors/usersetting';
+import { ToggleProfileDetail } from '../../pages/setting';
 
 
-export const FeedBackContext =  createContext()
 
-const   ProfileInformations = () => {
+const ProfileInformations = () => {
     const {users} =  useUsers() 
     const {getUser} =  useContext(UserRecords)
     const [userInfo, setUserInfo] = useState({})
-    const [feedBack, setFeedBack] = useState('')
-  
+    const {isToggle} = useContext(ToggleProfileDetail)
 
+  
     useEffect(() => {
         if (getUser?.id) {
             const userId = getUser.id;
@@ -27,7 +27,6 @@ const   ProfileInformations = () => {
 
     return (    
         <>
-            <FeedBackContext.Provider value={{ feedBack, setFeedBack}}>
 
             <section className="profile-info-sect">
 
@@ -35,8 +34,17 @@ const   ProfileInformations = () => {
 
                 <div>
                     <span className='profile-header'>Profile setting</span>
+
+                        {isToggle ? 
+                        
+                        <UserSetting /> 
+
+                        :
                         
                         <UserProfileInformations email={email} phone={phone} surname={surname} name={name} />
+
+                        }
+                        
                     
                         <div className='password-main-section'>
                             <p className='profile-header sub-headers'>Password Setting</p>
@@ -62,8 +70,6 @@ const   ProfileInformations = () => {
                         </div>
                 </div>
             </section>
-
-            </FeedBackContext.Provider>
         </>
     )
 }

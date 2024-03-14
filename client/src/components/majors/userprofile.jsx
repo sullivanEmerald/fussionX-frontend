@@ -1,19 +1,11 @@
-import UserSetting from "./usersetting";
-import { useState, createContext } from "react";
-
+import { ToggleProfileDetail } from "../../pages/setting";
+import { useContext } from "react";
 
 const UserProfileInformations = ({email, name, surname, phone}) => {
-
-    const [showSetting, setShowSetting] = useState(false)
+    const {setIsToggle} = useContext(ToggleProfileDetail)
 
     return (
         <>  
-
-            {showSetting ? (
-
-                <UserSetting /> 
-
-            ) : (
                 <div className='profile-details'>
                     <div>
                         <p>Name</p>
@@ -34,9 +26,8 @@ const UserProfileInformations = ({email, name, surname, phone}) => {
                         <p>Phone Number</p>
                         <span>(+234){phone}</span>
                     </div>
-                <button onClick={() => setShowSetting(true)} className='edit-button'>Edit Profile</button>
+                <button onClick={() => setIsToggle((prev) => !prev)} className='edit-button'>Edit Profile</button>
             </div>
-            )}
         </>
     )
 }

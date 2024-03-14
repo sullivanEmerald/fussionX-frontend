@@ -1,11 +1,12 @@
-import {useContext} from 'react'
+
 import { UserRecords } from '../../App';
 import { useForm } from 'react-hook-form';
-import { useState,useEffect } from 'react';
+import { useState, useEffect, useContext} from 'react';
 import { useUsers } from '../../context/user';
+import { ToggleForSetting } from '../../pages/display';
 
-const UserSetting = (props) => {
-    const {profileSetting, setShowSetting} = props
+const UserSetting = () => {
+    const {isToggle, setIsToggle} = useContext(ToggleForSetting)
     const {getUser} = useContext(UserRecords)
     const {users, setUsers} = useUsers()
     const [isProcessing, setIsProcessing] =  useState(false)
@@ -18,6 +19,11 @@ const UserSetting = (props) => {
     const [useEmail, setUserEmail] = useState(email)
     const [userPhone, setUserPhone] = useState(phone)
 
+
+    console.log(isToggle)
+    console.log(setIsToggle)
+
+
     useEffect(() => {
         const userId = getUser.id
         setUser(users.find((user) => user._id === userId))
@@ -27,7 +33,7 @@ const UserSetting = (props) => {
         setUserEmail(email)
         setUserPhone(phone)
 
-    }, [setShowSetting])
+    }, [])
 
 
 
@@ -68,12 +74,11 @@ const UserSetting = (props) => {
         //     setIsProcessing(false);
         // }
 
-        console.log(data)
     };
     return (
          <>
                 {response !== '' && <p style={{ color : 'red'}}>{response}</p>}
-                <form onSubmit={handleSubmit(onSubmit)} className={!profileSetting ? 'profile-details' : 'profile-setting'}>
+                <form onSubmit={handleSubmit(onSubmit)} className='profile-setting'>
                     <div>
                         <p>Name</p>
                         <input  value={userName !== '' ? userName : name} type='text' onChange={(e) => setUserName(e.target.value)} />
@@ -97,8 +102,12 @@ const UserSetting = (props) => {
                         <input type='text' value={userPhone !== '' ? userPhone : phone} {...register('phone')} onChange={(e) => setUserPhone(e.target.value)} />
                         {errors.phone?.message && <p style={{ color: '#D76504' }}>{errors.phone.message}</p>}
                     </div>
+                    
                     <button disabled={isProcessing} className='edit-button' type='submit'>{isProcessing ? 'Saving' : 'Save Changes'}</button>
-                    <button onClick={() =>setShowSetting(false) }>Profile</button>
+
+                    <button onClick={() => setIsToggle((prev) => !prev) }>Back</button>
+
+
                 </form>
         </>
     )

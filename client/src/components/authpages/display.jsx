@@ -1,11 +1,12 @@
 import ProfileDisplay from '../profile';
 import UserSetting from '../majors/usersetting';
-import { useState } from 'react';
+import { useContext } from 'react';
 import ChangePassword from '../majors/setpassword';
-import { ProfileToggle } from '../majors/userprofile';
+import UserProfileInformations from '../majors/userprofile';
+import { ToggleForSetting } from '../../pages/display';
 
-const UserProfileDetails = () => {
-    const [error, setError] = useState('')
+const UserProfileDetails = () => { 
+    const {isToggle} = useContext(ToggleForSetting)
     
     return (
         <>
@@ -17,9 +18,16 @@ const UserProfileDetails = () => {
         <div>
             <span className='profile-header'>Profile setting</span>
 
-                {error !== '' && <span style={{ color : 'red'}}>{error}</span>}
 
-                <UserSetting profileSetting={false} />
+                {!isToggle ? 
+
+                    <UserSetting />
+
+                    :
+
+                    <UserProfileInformations />
+                } 
+                
             
                 <ChangePassword />
 

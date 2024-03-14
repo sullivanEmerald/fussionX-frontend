@@ -1206,6 +1206,15 @@
   font-size: 16px;
   line-height: 20.83px;
   font-family: DM Sans;
+  background: transparent;
+  padding: 5px;
+  border: 1px solid #FF6C04;
+  border-radius: 10px;
+}
+
+.profile-details input:focus{
+  border: 1px solid #FF6C04;
+  outline: none;
 }
 
 .edit-button{
