@@ -3,10 +3,10 @@ import UserSetting from '../majors/usersetting';
 import { useContext } from 'react';
 import ChangePassword from '../majors/setpassword';
 import UserProfileInformations from '../majors/userprofile';
-import { ToggleForSetting } from '../../pages/display';
+import { ToggleFlips } from '../../App';
 
 const UserProfileDetails = () => { 
-    const {isToggle} = useContext(ToggleForSetting)
+    const {isToggle} = useContext(ToggleFlips)
     
     return (
         <>

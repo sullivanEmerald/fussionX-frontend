@@ -1,7 +1,10 @@
 import ProfileImage from "../profile-image";
 import {Link} from 'react-router-dom'
+import { ToggleFlips } from "../../App";
+import { useContext } from "react";
 
 const Aside = () => {
+    const {setToggle} = useContext(ToggleFlips)
     return  (
         <>
             <section className="aside-container">
@@ -37,7 +40,7 @@ const Aside = () => {
                         </Link>
                     </div>
                     <div>
-                        <Link to={'/settings'} className="links"><img src="/images/sideicons/setting.png" className="link-icons" alt="logo" />
+                        <Link to={'/settings'} onClick={() => setToggle(false)} className="links"><img src="/images/sideicons/setting.png" className="link-icons" alt="logo" />
                             <span>Setting</span>
                         </Link>
                     </div>

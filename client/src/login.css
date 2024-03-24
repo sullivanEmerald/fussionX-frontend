@@ -1037,6 +1037,7 @@
 }
 
 
+
 .active-main-section > p{
   font-weight: 500px;
   font-size: 20px;
@@ -1045,6 +1046,7 @@
   opacity: 70%;
   margin-bottom: 20px;
 }
+
 
 
 .profile-setting-main{
@@ -1175,26 +1177,45 @@
   height: 220px;
   background: #14100D;
   border-radius: 10px;
-  padding: 20px;
+  padding:20px;
   position: relative;
 
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
-.profile-details > div, .profile-setting > div{
+
+.profile-setting > form {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  row-gap: 12px;
+  margin-top: 15px;
+}
+
+
+.profile-details > div, .profile-setting > form > div{
   flex-basis: 40%;
   line-height: 15.62px;
 }
 
-.profile-details > div p, .profile-setting > div p{
+.backButton-profile{
+  position: absolute;
+  transform: rotate(-90deg);
+  top: 15px;
+  width: 15px;
+  cursor: pointer;
+}
+
+.profile-details > div p, .profile-setting> form > div p{
   font-weight: 400px;
   font-size: 12px;
   color: #FFFFFF;
   opacity: 60%;
+  transform: translateY(10px);
 }
 
-.profile-details > div span, .profile-setting > div span{
+.profile-details > div span, .profile-setting > form > div span{
   font-weight: 500px;
   font-size: 16px;
   color: #FFFFFF;

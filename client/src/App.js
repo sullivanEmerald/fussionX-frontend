@@ -38,13 +38,18 @@ export const UserImage = createContext({
   setUserImage : () => {}
 })
 
+export const ToggleFlips = createContext({
+  isToggle : false,
+  setToggle : () => {},
+})
+
 
 function App() {
   const [islogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [getUser, setUser] = useState(null);
   const [userProfilePicture, setUserImage] = useState('')
-  const [toggleDetails, setToggleDetails] =  useState(false)
+  const [isToggle, setToggle] =  useState(false)
 
 
   useEffect(() => {
@@ -78,28 +83,30 @@ function App() {
         <UserRecords.Provider value={{ getUser, setUser }}>
           <UserImage.Provider value={{userProfilePicture, setUserImage }}>
           <PredictionProvider>
-          <Router>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/dashboard" element={<User />} />
-              <Route path='/subscribtion' element={<Profile />}/>
-              <Route path='/payment' element={<Search />} />
-              <Route path='/bonus' element={<Bonus />} />
-              <Route path='/active' element={<Active />} />
-              <Route path='/settings' element={<DisplayProfile isToggle={toggleDetails} setIsToggle={setToggleDetails} />} />
-              <Route path='/profile' element={<Setting isToggle={toggleDetails} setIsToggle={setToggleDetails}/>} />
-              <Route path='/verify' element={<VerifyRoute />} />
-              <Route path='/notverify' element={<Notverified />} />
-              <Route path='/password' element={<Passsword />} /> 
-              <Route path='/reset' element={<ResetPasssword />} />
+            <ToggleFlips.Provider value={{ isToggle, setToggle }} >
+            <Router>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/dashboard" element={<User />} />
+                <Route path='/subscribtion' element={<Profile />}/>
+                <Route path='/payment' element={<Search />} />
+                <Route path='/bonus' element={<Bonus />} />
+                <Route path='/active' element={<Active />} />
+                <Route path='/settings' element={<DisplayProfile />} />
+                <Route path='/profile' element={<Setting />} />
+                <Route path='/verify' element={<VerifyRoute />} />
+                <Route path='/notverify' element={<Notverified />} />
+                <Route path='/password' element={<Passsword />} /> 
+                <Route path='/reset' element={<ResetPasssword />} />
 
-              {/* ADMIN ROUTES */}
+                {/* ADMIN ROUTES */}
 
-              <Route path="/admin" element={<AdminRoute isAdmin={isAdmin} component={AdminIndexPage} />} />
-            </Routes>
+                <Route path="/admin" element={<AdminRoute isAdmin={isAdmin} component={AdminIndexPage} />} />
+              </Routes>
           </Router> 
+          </ToggleFlips.Provider>
           </PredictionProvider>
           </UserImage.Provider>
         </UserRecords.Provider>

@@ -1,8 +1,8 @@
-import { ToggleProfileDetail } from "../../pages/setting";
+import { ToggleFlips } from "../../App";
 import { useContext } from "react";
 
 const UserProfileInformations = ({email, name, surname, phone}) => {
-    const {setIsToggle} = useContext(ToggleProfileDetail)
+    const {setToggle} = useContext(ToggleFlips)
 
     return (
         <>  
@@ -26,7 +26,7 @@ const UserProfileInformations = ({email, name, surname, phone}) => {
                         <p>Phone Number</p>
                         <span>(+234){phone}</span>
                     </div>
-                <button onClick={() => setIsToggle((prev) => !prev)} className='edit-button'>Edit Profile</button>
+                <button onClick={() => setToggle((prev) => !prev)} className='edit-button'>Edit Profile</button>
             </div>
         </>
     )

@@ -5,13 +5,10 @@ import UserProfileDetails from "../components/authpages/display";
 import {createContext } from "react"; 
 
 
-export const ToggleForSetting = createContext()
 
-
-const DisplayProfile = ({isToggle, setIsToggle}) => {
+const DisplayProfile = () => {
     return (
-        <>  
-            <ToggleForSetting.Provider value={{ isToggle, setIsToggle}}>
+        <> 
 
             <div className="user-profile">
                 <div className="side-section">
@@ -24,7 +21,6 @@ const DisplayProfile = ({isToggle, setIsToggle}) => {
                     <UserProfileDetails  />
                 </div>
             </div>
-            </ToggleForSetting.Provider>
         </>
     )
 }

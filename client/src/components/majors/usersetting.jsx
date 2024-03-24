@@ -3,10 +3,12 @@ import { UserRecords } from '../../App';
 import { useForm } from 'react-hook-form';
 import { useState, useEffect, useContext} from 'react';
 import { useUsers } from '../../context/user';
-import { ToggleForSetting } from '../../pages/display';
+import { ToggleFlips } from '../../App';
 
 const UserSetting = () => {
-    const {isToggle, setIsToggle} = useContext(ToggleForSetting)
+
+    const {isToggle, setToggle} = useContext(ToggleFlips)
+
     const {getUser} = useContext(UserRecords)
     const {users, setUsers} = useUsers()
     const [isProcessing, setIsProcessing] =  useState(false)
@@ -19,9 +21,6 @@ const UserSetting = () => {
     const [useEmail, setUserEmail] = useState(email)
     const [userPhone, setUserPhone] = useState(phone)
 
-
-    console.log(isToggle)
-    console.log(setIsToggle)
 
 
     useEffect(() => {
@@ -70,15 +69,15 @@ const UserSetting = () => {
         // } catch (error) {
         //     setResponse('Error during form submission:', error);
         //     console.log('An error occurred during form submission.');
-        // } finally {
+        // } finally { 
         //     setIsProcessing(false);
         // }
 
     };
     return (
-         <>
+         <div className='profile-setting'>
                 {response !== '' && <p style={{ color : 'red'}}>{response}</p>}
-                <form onSubmit={handleSubmit(onSubmit)} className='profile-setting'>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <p>Name</p>
                         <input  value={userName !== '' ? userName : name} type='text' onChange={(e) => setUserName(e.target.value)} />
@@ -105,11 +104,10 @@ const UserSetting = () => {
                     
                     <button disabled={isProcessing} className='edit-button' type='submit'>{isProcessing ? 'Saving' : 'Save Changes'}</button>
 
-                    <button onClick={() => setIsToggle((prev) => !prev) }>Back</button>
-
-
                 </form>
-        </>
+
+                {isToggle && <img onClick={() => setToggle((prev) => !prev)} className='backButton-profile' src='images/dashboard/scrollUp.png' title='back to profile' alt='logo'/> }
+        </div>
     )
 }
 

@@ -4,16 +4,15 @@ import { useState, useEffect, useContext } from 'react';
 import { UserRecords } from '../../App';
 import UserProfileInformations from '../majors/userprofile';
 import UserSetting from '../majors/usersetting';
-import { ToggleProfileDetail } from '../../pages/setting';
-
+import { ToggleFlips } from '../../App';
 
 
 const ProfileInformations = () => {
     const {users} =  useUsers() 
     const {getUser} =  useContext(UserRecords)
     const [userInfo, setUserInfo] = useState({})
-    const {isToggle} = useContext(ToggleProfileDetail)
-
+    const {isToggle} = useContext(ToggleFlips)
+    
   
     useEffect(() => {
         if (getUser?.id) {
