@@ -11,7 +11,7 @@ const ProfileInformations = () => {
     const {users} =  useUsers() 
     const {getUser} =  useContext(UserRecords)
     const [userInfo, setUserInfo] = useState({})
-    const {isToggle} = useContext(ToggleFlips)
+    const {isToggle, errorMessage} = useContext(ToggleFlips)
     
   
     useEffect(() => {
@@ -25,7 +25,9 @@ const ProfileInformations = () => {
     const { email, phone, surname, name } = userInfo;
 
     return (    
-        <>
+        <div className='mai '>
+
+            {errorMessage === '' && <p className="profile-error-message">Amadike Sullivan Chigozie</p>}
 
             <section className="profile-info-sect">
 
@@ -69,7 +71,7 @@ const ProfileInformations = () => {
                         </div>
                 </div>
             </section>
-        </>
+        </div>
     )
 }
 

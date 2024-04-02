@@ -19,7 +19,6 @@ const Header = () => {
     }
      return (
         <>  
-            <div className="dashboard-header">
                         <div className="upper-section">
                             <div>
                                 <span className="wallet-balance">Wallet Balance</span>
@@ -50,7 +49,6 @@ const Header = () => {
 
                         </div>
                         {showWallet && <WalletModal show={showModal} handleClose={closeModal} />}
-            </div>
 
         </>
     )

@@ -1,8 +1,7 @@
 
 import Aside from "../components/profile/side";
 import Header from "../components/profile/header";
-import UserProfileDetails from "../components/authpages/display";
-import {createContext } from "react"; 
+import UserProfileDetails from "../components/authpages/display"
 
 
 
@@ -11,9 +10,8 @@ const DisplayProfile = () => {
         <> 
 
             <div className="user-profile">
-                <div className="side-section">
+
                     <Aside />
-                </div>
 
                 <div className="user-main-section">
                     <Header />

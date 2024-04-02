@@ -8,9 +8,8 @@ const Active = () => {
 
             <div className="user-profile">
 
-                <div className="side-section">
                     <Aside />
-                </div>
+                
 
                 <div className="user-main-section">
                     <Header />

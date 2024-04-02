@@ -41,6 +41,9 @@ export const UserImage = createContext({
 export const ToggleFlips = createContext({
   isToggle : false,
   setToggle : () => {},
+  errorMessage : '',
+  setErrorMessage : () => {}
+
 })
 
 
@@ -50,6 +53,7 @@ function App() {
   const [getUser, setUser] = useState(null);
   const [userProfilePicture, setUserImage] = useState('')
   const [isToggle, setToggle] =  useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
 
   useEffect(() => {
@@ -83,7 +87,7 @@ function App() {
         <UserRecords.Provider value={{ getUser, setUser }}>
           <UserImage.Provider value={{userProfilePicture, setUserImage }}>
           <PredictionProvider>
-            <ToggleFlips.Provider value={{ isToggle, setToggle }} >
+            <ToggleFlips.Provider value={{ isToggle, setToggle, errorMessage, setErrorMessage }} >
             <Router>
               <Routes>
                 <Route path="/" element={<Home />} />

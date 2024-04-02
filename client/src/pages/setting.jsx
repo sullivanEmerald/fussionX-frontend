@@ -7,9 +7,8 @@ const Setting = () => {
     return (
         <> 
                 <div className="user-profile">
-                    <div className="side-section">
+                  
                         <Aside />
-                    </div>
 
                     <div className="user-main-section">
                         <Header />

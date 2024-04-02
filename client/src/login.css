@@ -158,8 +158,6 @@
   font-family: DM Sans;
 }
 
-
-
 .wallet-balance{
   font-family: DM Sans;
   font-weight: 400px;
@@ -283,24 +281,32 @@
   flex-direction: row;
   justify-content: flex-start;
   gap: 10px;
+  position: relative;
 }
 
 .user-profile .side-section{
   width: 224px;
   min-height: 100%;
   background: #160F08;
+  border: 1px solid green;
 }
 
 .user-main-section{
   width: 1119px;
   height: 99px;
   padding: 20px 35px;
+  position: absolute;
+  left: 17%;
 }
 
 .aside-container{
   padding: 20px;
   font-family: DM Sans;
-  height: 976px;
+  width: 224px;
+  background: #160F08;
+  height: 848px;
+  max-height: 100vh;
+  position: fixed;
 }
 
 .aside-links{
@@ -1050,19 +1056,24 @@
 
 
 .profile-setting-main{
-  margin: 3% 0;
   position: relative;
-  padding: 30px 0;
+  margin-top: 20px;
 }
 
-.profile-setting-main > p {
+.profile-error-message{
+  font-family: DM Sans;
+  font-size: 20px;
+  text-align: center;
+  color: red;
+}
+
+/* .profile-setting-main > p {
   color: green;
   position: absolute;
   top: 0;
-  left: 40%;
   font-size: 20px;
   font-weight: 700;
-}
+} */
 
 .profile-info-sect{
   display: flex;
@@ -1233,7 +1244,7 @@
   border-radius: 10px;
 }
 
-.profile-details input:focus{
+.profile-details input:focus, .profile-setting input:focus{
   border: 1px solid #FF6C04;
   outline: none;
 }

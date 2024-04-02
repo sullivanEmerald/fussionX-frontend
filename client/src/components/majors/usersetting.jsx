@@ -76,7 +76,7 @@ const UserSetting = () => {
     };
     return (
          <div className='profile-setting'>
-                {response !== '' && <p style={{ color : 'red'}}>{response}</p>}
+                {/* {response !== '' && <p style={{ color : 'red'}}>{response}</p>} */}
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <p>Name</p>

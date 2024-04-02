@@ -79,15 +79,13 @@ const Predictions = () => {
                             </div>
                             <button className="caretDown"><img src="/images/dashboard/CaretDown.png" alt="logo" /></button>
                         </div>
-
-                        <div className="betting-advise">
-                            <p>Note: This is not financial advice. <label id="adviseShow">Stake only what you can afford to lose.</label></p>
-                        </div>
                     </div>
 
                 </div>
-
-                <Footer />
+                        <div className="betting-advise">
+                            <p>Note: This is not financial advice. <label id="adviseShow">Stake only what you can afford to lose.</label></p>
+                        </div>
+                        <Footer />
             </div>
         </>
     )

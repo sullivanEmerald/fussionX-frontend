@@ -7,10 +7,9 @@ const Profile = () => {
     return (
         <>  
             <div className="user-profile">
-                <div className="side-section">
-                    <Aside />
-                </div>
 
+                    <Aside />
+                
                 <div className="user-main-section">
                     <Header />
 

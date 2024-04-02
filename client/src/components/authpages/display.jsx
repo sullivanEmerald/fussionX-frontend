@@ -6,40 +6,43 @@ import UserProfileInformations from '../majors/userprofile';
 import { ToggleFlips } from '../../App';
 
 const UserProfileDetails = () => { 
-    const {isToggle} = useContext(ToggleFlips)
+    const {isToggle, errorMessage} = useContext(ToggleFlips)
     
     return (
         <>
             <main className='profile-setting-main'>
-                <section className="profile-info-sect display-profile-setting">
+
+            {errorMessage === '' && <p className="profile-error-message">Amadike Sullivan Chigozie</p>}
+
+            <section className="profile-info-sect display-profile-setting">
                     
                 <ProfileDisplay />
 
-        <div>
-            <span className='profile-header'>Profile setting</span>
+            <div>
+                <span className='profile-header'>Profile setting</span>
 
 
-                {!isToggle ? 
+                    {!isToggle ? 
 
-                    <UserSetting />
+                        <UserSetting />
 
-                    :
+                        :
 
-                    <UserProfileInformations />
-                } 
+                        <UserProfileInformations />
+                    } 
+                    
                 
-            
-                <ChangePassword />
+                    <ChangePassword />
 
-                <p className='profile-header sub-headers'>Account details</p>
-                <div className='account-details'>
-                    <div>
-                        <span className='acct-info'>Account number: <label style={{ opacity : '100%', color : '#FFFFFF'}}>087678976</label></span>
-                        <span className='profile-copy'>Copy</span>
+                    <p className='profile-header sub-headers'>Account details</p>
+                    <div className='account-details'>
+                        <div>
+                            <span className='acct-info'>Account number: <label style={{ opacity : '100%', color : '#FFFFFF'}}>087678976</label></span>
+                            <span className='profile-copy'>Copy</span>
+                        </div>
+                        <span className='profile-bank'>Bank: <label style={{ opacity : '50%'}}>Opay</label></span>
                     </div>
-                    <span className='profile-bank'>Bank: <label style={{ opacity : '50%'}}>Opay</label></span>
-                </div>
-        </div>
+            </div>
     </section>
             </main>
 
