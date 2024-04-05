@@ -145,6 +145,7 @@
 }
 
 
+
 /************************************************************************
   DASHBOARD
 *************************************************************************/
@@ -1065,6 +1066,25 @@
   font-size: 20px;
   text-align: center;
   color: red;
+  transform: translateY(10px);
+}
+
+.profile-error-sucucess{
+  font-family: DM Sans;
+  font-size: 20px;
+  text-align: center;
+  color: rgb(9, 203, 9)  ;
+  transform: translateY(10px);
+}
+
+.profile-cover-error{
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-cover{
+  position: relative;
+  margin-top: 5%;
 }
 
 /* .profile-setting-main > p {

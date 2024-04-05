@@ -12,7 +12,7 @@ const UserProfileDetails = () => {
         <>
             <main className='profile-setting-main'>
 
-            {errorMessage === '' && <p className="profile-error-message">Amadike Sullivan Chigozie</p>}
+            {errorMessage !== '' && <p className="profile-error-message">{errorMessage}</p>}
 
             <section className="profile-info-sect display-profile-setting">
                     

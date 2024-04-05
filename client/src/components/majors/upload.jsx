@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useContext, useState} from "react";
 import { useImages } from '../../context/image';
 import { UserImage } from '../../App';
+import { ToggleFlips } from '../../App';
 
 
 const UploadImageForm = (props) => {
@@ -11,6 +12,8 @@ const UploadImageForm = (props) => {
     const {images, setImages} = useImages()
     const {setUserImage} =  useContext(UserImage)
     const {error, setError} = useState('')
+    const {setErrorMessage, setUserReturnedMessage, userReturnedMessage} = useContext(ToggleFlips)
+    console.log(userReturnedMessage)
 
     // useEffect(() => {
     //     const foundImage = images.find((item) => item.userId === id);
@@ -61,10 +64,19 @@ const UploadImageForm = (props) => {
             });
 
             if (response.ok) {
-                const { profilePic } = await response.json()  
-                setImages(!images.length ? [profilePic] : [...images, profilePic])
-                setUserImage(profilePic.image)
-                handleClose()
+                const { profilePic, msg } = await response.json()  
+
+                await setUserImage(profilePic.image)
+
+                await setUserReturnedMessage(true);
+                
+
+                await setImages(!images.length ? [profilePic] : [...images, profilePic])
+                
+               await  handleClose()
+
+                await setErrorMessage(msg)
+
             } else {
                 const {error} = await response.json(); 
                 setError(error)               

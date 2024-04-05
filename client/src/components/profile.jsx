@@ -13,7 +13,6 @@ const ProfileDisplay = () => {
   const { getUser } = useContext(UserRecords);
   const [isShowForm, setShowForm] = useState(false);
   const {userProfilePicture} = useContext(UserImage)
-  const [feedBack, setFeedBack] = useState('')
    
   const displayForm = () => {
     setShowForm(true);
@@ -34,7 +33,7 @@ const ProfileDisplay = () => {
   
 
   return (
-        <UserFormerImage.Provider value={{ userProfilePicture, setFeedBack }}>
+        <UserFormerImage.Provider value={{ userProfilePicture }}>
         <div>
 
         {isShowForm ? (

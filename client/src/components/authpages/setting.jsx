@@ -5,6 +5,7 @@ import { UserRecords } from '../../App';
 import UserProfileInformations from '../majors/userprofile';
 import UserSetting from '../majors/usersetting';
 import { ToggleFlips } from '../../App';
+import ErrorMessage from '../majors/message';
 
 
 const ProfileInformations = () => {
@@ -25,9 +26,11 @@ const ProfileInformations = () => {
     const { email, phone, surname, name } = userInfo;
 
     return (    
-        <div className='mai '>
+        <div className={errorMessage !== '' ? 'profile-cover-error' : 'profile-cover'}>
 
-            {errorMessage === '' && <p className="profile-error-message">Amadike Sullivan Chigozie</p>}
+
+            {errorMessage !== '' && <ErrorMessage />}
+            
 
             <section className="profile-info-sect">
 

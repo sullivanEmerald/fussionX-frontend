@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {useForm} from 'react-hook-form'
 import { useImages } from "../../context/image";
 import { UserImage } from "../../App";
+import { ToggleFlips } from "../../App";
 
 const ChangeProfileForm = ({ handleClose}) => {
     const {userProfilePicture} = useContext(UserFormerImage)
@@ -12,6 +13,7 @@ const ChangeProfileForm = ({ handleClose}) => {
     const [error, setError] = useState('')
     const {images, setImages} = useImages()
     const {setUserImage} = useContext(UserImage)
+    const {setErrorMessage} = useContext(ToggleFlips)
 
     const schema = yup.object().shape({
         newPhoto: yup
@@ -57,8 +59,17 @@ const ChangeProfileForm = ({ handleClose}) => {
             if (response.ok) {
                 const { userNewImage, msg , user} = await response.json()  
                 setUserImage(userNewImage.image)
-                setImages(images.map((item) => item.userId = user ? {...item, image : userNewImage.image, cloudinaryId : userNewImage.cloudinaryId } : item))
-                handleClose()
+                setErrorMessage(msg)
+                await new Promise((resolve) => {
+                    setImages((prevImages) =>
+                      prevImages.map((item) =>
+                        item.userId === user
+                          ? { ...item, image: userNewImage.image, cloudinaryId: userNewImage.cloudinaryId }
+                          : item
+                      )
+                    );
+                    resolve(); 
+                  });
             } else {
                 const {error} = await response.json(); 
                 setProcessing(false)
