@@ -1220,7 +1220,7 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  row-gap: 12px;
+  row-gap: 10px;
   margin-top: 15px;
 }
 
@@ -1285,6 +1285,9 @@
   border-radius: 15px;
 }
 
+.edit-button:disabled{
+  background-color: green;
+}
 
 .password-section{
   background: #14100D;

@@ -1,9 +1,9 @@
 
 import { UserRecords } from '../../App';
-import { useForm } from 'react-hook-form';
 import { useState, useEffect, useContext} from 'react';
 import { useUsers } from '../../context/user';
 import { ToggleFlips } from '../../App';
+import * as validate from 'yup'
 
 const UserSetting = () => {
 
@@ -13,32 +13,75 @@ const UserSetting = () => {
     const {users, setUsers} = useUsers()
     const [isProcessing, setIsProcessing] =  useState(false)
     const [user, setUser] = useState({})
-    const {name, surname, email, phone, _id} =  user || {}
-    const [response, setResponse] = useState('')
+    const [formData, setFormData] = useState({
+        firstname : '',
+        surname : '',
+        email : '',
+        phonne  : ''
+    })
 
-    const [userName, setUserName] = useState(name);
-    const [userSurname, setUserSurname] = useState(surname)
-    const [useEmail, setUserEmail] = useState(email)
-    const [userPhone, setUserPhone] = useState(phone)
-
-
+     // Populate form data with user details on component mount
+     useEffect(() => {
+        const userId = getUser.id;
+        const currentUser = users.find((user) => user._id === userId);
+        setUser(currentUser);
+    }, [getUser.id, users]);
 
     useEffect(() => {
-        const userId = getUser.id
-        setUser(users.find((user) => user._id === userId))
+        setFormData({
+            firstname: user?.name || '',
+            surname: user?.surname || '',
+            email: user?.email || '',
+            phone: user?.phone || ''
+        });
+    }, [user]);
 
-        setUserName(name)
-        setUserSurname(surname)
-        setUserEmail(email)
-        setUserPhone(phone)
+    // useEffect(() => {
+    //     const isEmptyField = Object.values(formData).some(value => value === '');
+    //     if(isEmptyField) {
+    //         setIsProcessing(true);
+    //         return;
+    //     }
+    // }, [formData])
 
-    }, [])
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevData => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
+    const [errors, setErrors] = useState('')
 
 
+    const validationSchema =  validate.object({
+        firstname : validate.string().required('firstname is required'),
+        surname : validate.string().required('surname is requried'),
+        email: validate.string().email('enter the right email format').required('email field is required'),
+        phone : validate.string().matches(/^\d{11}$/, "phone number must be 11 digits")
+    })
 
-    const {register, handleSubmit, formState : {errors}} = useForm()
 
-    const onSubmit = async (data, event) => {
+    // const {handleSubmit, formState : {errors}} = useForm()
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            await validationSchema.validate(formData, {abortEarly : false})
+            console.log(formData)
+        } catch (error) {
+            const newError = {}
+            
+            error.inner.forEach((err) => {
+                newError[err.path] = err.message
+             });
+
+             setErrors(newError)
+        }
+
         // event.preventDefault();
         // setIsProcessing(true);
         // setResponse('')
@@ -76,33 +119,32 @@ const UserSetting = () => {
     };
     return (
          <div className='profile-setting'>
-                {/* {response !== '' && <p style={{ color : 'red'}}>{response}</p>} */}
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit}>
                     <div>
                         <p>Name</p>
-                        <input  value={userName !== '' ? userName : name} type='text' onChange={(e) => setUserName(e.target.value)} />
-                        {errors.name?.message && <p style={{ color: '#D76504' }}>{errors.name.message}</p>}
+                        <input value={formData.firstname} type='text' onChange={handleChange} name='firstname' />
+                        {errors.firstname && <span style={{ color: '#D76504' }}>{errors.firstname}</span>}
                     </div>
 
                     <div>
                         <p>Surname</p>
-                        <input value={userSurname !== '' ? userSurname : surname} type='text' {...register('surname')} onChange={(e) => setUserSurname(e.target.value)} />
-                        {errors.surname?.message && <p style={{ color: '#D76504' }}>{errors.surname.message}</p>}
+                        <input value={formData.surname} type='text' name='surname' onChange={handleChange} />
+                        {errors.surname && <span style={{ color: '#D76504' }}>{errors.surname}</span>}
                     </div>
 
                     <div>
                         <p>email</p>
-                        <input type='text' value={useEmail  !== '' ? useEmail : email }  {...register('email')} onChange={(e) => setUserEmail(e.target.value)}  />
-                        {errors.email?.message && <p style={{ color: '#D76504' }}>{errors.email.message}</p>}
+                        <input type='text' value={formData.email} onChange={handleChange} name='email'  />
+                        {errors.email && <span style={{ color: '#D76504' }}>{errors.email}</span>}
                     </div>
 
                     <div>
                         <p>Phone Number</p>
-                        <input type='text' value={userPhone !== '' ? userPhone : phone} {...register('phone')} onChange={(e) => setUserPhone(e.target.value)} />
-                        {errors.phone?.message && <p style={{ color: '#D76504' }}>{errors.phone.message}</p>}
+                        <input type='text' value={formData.phone} onChange={handleChange} name='phone' />
+                        {errors.phone && <span style={{ color: '#D76504' }}>{errors.phone}</span>}
                     </div>
                     
-                    <button disabled={isProcessing} className='edit-button' type='submit'>{isProcessing ? 'Saving' : 'Save Changes'}</button>
+                    <button disabled={isProcessing || Object.values(formData).some(value => value === '')} className='edit-button' type='submit'>{isProcessing ? 'Updating Records' : 'Save Changes'}</button>
 
                 </form>
 

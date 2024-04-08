@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import ChangePassword from '../majors/setpassword';
 import UserProfileInformations from '../majors/userprofile';
 import { ToggleFlips } from '../../App';
+import ErrorMessage from '../majors/message';
 
 const UserProfileDetails = () => { 
     const {isToggle, errorMessage} = useContext(ToggleFlips)
@@ -12,7 +13,7 @@ const UserProfileDetails = () => {
         <>
             <main className='profile-setting-main'>
 
-            {errorMessage !== '' && <p className="profile-error-message">{errorMessage}</p>}
+            {errorMessage !== '' && <ErrorMessage />}
 
             <section className="profile-info-sect display-profile-setting">
                     

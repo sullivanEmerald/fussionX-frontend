@@ -13,7 +13,8 @@ const UploadImageForm = (props) => {
     const {setUserImage} =  useContext(UserImage)
     const {error, setError} = useState('')
     const {setErrorMessage, setUserReturnedMessage, userReturnedMessage} = useContext(ToggleFlips)
-    console.log(userReturnedMessage)
+    const [isProcessing, setIsProcessing] =  useState(false)
+
 
     // useEffect(() => {
     //     const foundImage = images.find((item) => item.userId === id);
@@ -49,6 +50,8 @@ const UploadImageForm = (props) => {
     const onSubmit = async (data) => {
         try {
 
+            setIsProcessing(true)
+
             if (errors.profilePicture) {
                 // Validation failed, display the error message
                 setError(errors.profilePicture.message);
@@ -83,7 +86,9 @@ const UploadImageForm = (props) => {
             }
         } catch (error) {
             console.error('Error during image upload:', error);
-            // Handle unexpected errors
+           
+        } finally {
+            setIsProcessing(false)
         }
     };
 
@@ -93,7 +98,9 @@ const UploadImageForm = (props) => {
         <>
             <div className='fund-transfer-modal'>
                 <img src='/images/icons/close.png' onClick={() => handleClose()} className='close-button' alt='logo' />
-                {error && <p style={{  color : 'red'}}></p>}
+
+                {error !== '' && <p style={{  color : 'red'}}>{error}</p>}
+
                 <p style={{ textAlign : 'center'}}>Update Profile Picture</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
@@ -101,7 +108,7 @@ const UploadImageForm = (props) => {
                         <input type='file' id="photoInput" placeholder='Enter bank account number' {...register('profilePicture')} />
                         {errors.profilePicture && <p style={{ color: 'red' }}>{errors.profilePicture.message}</p>}
                     </div>
-                    <button className='picture-upload-button' type='submit'><img src="/images/icons/Export.png" className="remove-style-button change-images" alt="logo" /> Upload</button>
+                    <button disabled={isProcessing} className='picture-upload-button' type='submit'><img src="/images/icons/Export.png" className="remove-style-button change-images" alt="logo" />{isProcessing ? 'Uploading Profile Picture' : 'Uplood'}</button>
                 </form>
             </div>
         </>
