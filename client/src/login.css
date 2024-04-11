@@ -1285,9 +1285,37 @@
   border-radius: 15px;
 }
 
-.edit-button:disabled{
-  background-color: green;
+.edit-button:disabled{  
+  cursor: not-allowed;
+  width: 150px;
+  text-align: center;
 }
+
+
+.preloader-container{
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  flex-wrap: nowrap;
+  text-align: center;
+  padding: 3px 5px;
+}
+
+
+.loader {
+  border: 2px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 2px solid #FF6C04;
+  width: 15px;
+  height: 15px;
+  animation: spin 2s linear infinite; 
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); } 
+  100% { transform: rotate(360deg); } 
+}
+
 
 .password-section{
   background: #14100D;

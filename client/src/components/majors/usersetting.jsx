@@ -3,30 +3,30 @@ import { UserRecords } from '../../App';
 import { useState, useEffect, useContext} from 'react';
 import { useUsers } from '../../context/user';
 import { ToggleFlips } from '../../App';
-import * as validate from 'yup'
+import * as validate from 'yup';
+import PreLoader from './laoder';
 
 const UserSetting = () => {
 
-    const {isToggle, setToggle} = useContext(ToggleFlips)
-
-    const {getUser} = useContext(UserRecords)
+    const {isToggle, setToggle, setErrorMessage, setUserReturnedMessage} = useContext(ToggleFlips)
+    const {getUser, setUser} = useContext(UserRecords)
     const {users, setUsers} = useUsers()
-    const [isProcessing, setIsProcessing] =  useState(false)
-    const [user, setUser] = useState({})
+    const [isProcessing, setIsProcessing] = useState(false)
+    const [user, setCurrrentUser] = useState({})
     const [formData, setFormData] = useState({
         firstname : '',
         surname : '',
         email : '',
-        phonne  : ''
+        phone  : ''
     })
 
-     // Populate form data with user details on component mount
      useEffect(() => {
         const userId = getUser.id;
         const currentUser = users.find((user) => user._id === userId);
-        setUser(currentUser);
-    }, [getUser.id, users]);
+        setCurrrentUser(currentUser);
+    }, [getUser, users]);
 
+ 
     useEffect(() => {
         setFormData({
             firstname: user?.name || '',
@@ -36,14 +36,7 @@ const UserSetting = () => {
         });
     }, [user]);
 
-    // useEffect(() => {
-    //     const isEmptyField = Object.values(formData).some(value => value === '');
-    //     if(isEmptyField) {
-    //         setIsProcessing(true);
-    //         return;
-    //     }
-    // }, [formData])
-
+   
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -52,6 +45,7 @@ const UserSetting = () => {
             [name]: value
         }));
     };
+
 
     const [errors, setErrors] = useState('')
 
@@ -70,9 +64,49 @@ const UserSetting = () => {
         event.preventDefault();
 
         try {
+
             await validationSchema.validate(formData, {abortEarly : false})
-            console.log(formData)
-        } catch (error) {
+
+            await setIsProcessing(true)
+
+            await setErrors('')
+            
+            const response = await fetch(`/users/update/${user._id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+            
+                    if (!response.ok) {
+                        const {error} = await response.json();
+
+                        await setUserReturnedMessage(false);
+
+                        await setErrorMessage(error)
+                    } else {
+
+                        const { msg } = await response.json();
+
+                        const { firstname, surname, email, phone, } = formData;
+
+                        await setUsers((previousUsers) => previousUsers.map((item) => item._id === user._id ? {...item, name : firstname, surname : surname, email : email, phone : phone} : item))
+
+                        const updatedUser = {...getUser, name: firstname, surname: surname, email: email, phone: phone };
+
+                        await setUser(updatedUser);
+
+
+                        await setToggle((prev) => !prev)
+
+
+                        await setUserReturnedMessage(true);
+
+                        await setErrorMessage(msg);
+
+                    }
+        } catch (error) {   
             const newError = {}
             
             error.inner.forEach((err) => {
@@ -80,41 +114,11 @@ const UserSetting = () => {
              });
 
              setErrors(newError)
+
+        } finally {
+            setIsProcessing(false)
         }
 
-        // event.preventDefault();
-        // setIsProcessing(true);
-        // setResponse('')
-
-        // if (Object.values(data).some(value => value === '')) {
-        //     setIsProcessing(false);
-        //     setResponse('Fill all fields')
-        //     return;
-        // }
-    
-        // try {
-        //     const response = await fetch(`/users/update/${_id}`, {
-        //         method: 'PUT',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(data)
-        //     });
-    
-        //     if (!response.ok) {
-        //         const {error} = await response.json();
-        //         setResponse(error)
-        //     } else {
-        //         const {msg} = await response.json();
-        //         setUsers((previousUsers) => previousUsers.map((item) => item._id === _id ? {...item, name : data.name, surname : data.surname, email : data.email, phone : data.phone} : item))
-        //         setResponse(msg);
-        //     }
-        // } catch (error) {
-        //     setResponse('Error during form submission:', error);
-        //     console.log('An error occurred during form submission.');
-        // } finally { 
-        //     setIsProcessing(false);
-        // }
 
     };
     return (
@@ -144,7 +148,7 @@ const UserSetting = () => {
                         {errors.phone && <span style={{ color: '#D76504' }}>{errors.phone}</span>}
                     </div>
                     
-                    <button disabled={isProcessing || Object.values(formData).some(value => value === '')} className='edit-button' type='submit'>{isProcessing ? 'Updating Records' : 'Save Changes'}</button>
+                    <button disabled={isProcessing || Object.values(formData).some(value => value === '')} className='edit-button' type='submit'>{isProcessing ? <PreLoader stateCondition='Updating Record..' /> : 'Save Changes'}</button>
 
                 </form>
 

@@ -23,7 +23,6 @@ const ProfileInformations = () => {
         }
     }, [getUser, users]);
 
-    const { email, phone, surname, name } = userInfo;
 
     return (    
         <div className={errorMessage !== '' ? 'profile-cover-error' : 'profile-cover'}>
@@ -45,7 +44,7 @@ const ProfileInformations = () => {
 
                         :
                         
-                        <UserProfileInformations email={email} phone={phone} surname={surname} name={name} />
+                        <UserProfileInformations />
 
                         }
                         
