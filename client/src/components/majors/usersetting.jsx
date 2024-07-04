@@ -80,11 +80,13 @@ const UserSetting = () => {
                     });
             
                     if (!response.ok) {
+
                         const {error} = await response.json();
 
                         await setUserReturnedMessage(false);
 
                         await setErrorMessage(error)
+
                     } else {
 
                         const { msg } = await response.json();
@@ -97,9 +99,7 @@ const UserSetting = () => {
 
                         await setUser(updatedUser);
 
-
                         await setToggle((prev) => !prev)
-
 
                         await setUserReturnedMessage(true);
 

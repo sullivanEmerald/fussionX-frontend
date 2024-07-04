@@ -1,4 +1,5 @@
 import { Basic, SubcribtionList  } from "../sublist"
+
 const PurchaseRate = () => {
     return (
         <div className="dashboard-billing">

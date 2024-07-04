@@ -44,7 +44,9 @@ export const ToggleFlips = createContext({
   errorMessage : '',
   setErrorMessage : () => {},
   userReturnedMessage :false,
-  setUserReturnedMessage : () => {}
+  setUserReturnedMessage : () => {},
+  isPassword: false,
+  setIsPassword : () => {}
 })
 
 
@@ -54,6 +56,7 @@ function App() {
   const [getUser, setUser] = useState(null);
   const [userProfilePicture, setUserImage] = useState('')
   const [isToggle, setToggle] =  useState(false)
+  const [isPassword,setIsPassword] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [userReturnedMessage, setUserReturnedMessage] = useState(false)
 
@@ -89,7 +92,7 @@ function App() {
         <UserRecords.Provider value={{ getUser, setUser }}>
           <UserImage.Provider value={{userProfilePicture, setUserImage }}>
           <PredictionProvider>
-            <ToggleFlips.Provider value={{ isToggle, setToggle, errorMessage, setErrorMessage, userReturnedMessage, setUserReturnedMessage }} >
+            <ToggleFlips.Provider value={{ isToggle, setToggle, errorMessage, setErrorMessage, userReturnedMessage, setUserReturnedMessage, isPassword, setIsPassword }} >
             <Router>
               <Routes>
                 <Route path="/" element={<Home />} />

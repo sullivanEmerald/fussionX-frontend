@@ -5,9 +5,10 @@ import ChangePassword from '../majors/setpassword';
 import UserProfileInformations from '../majors/userprofile';
 import { ToggleFlips } from '../../App';
 import ErrorMessage from '../majors/message';
+import PasswordView from '../majors/passwordview';
 
 const UserProfileDetails = () => { 
-    const {isToggle, errorMessage} = useContext(ToggleFlips)
+    const {isToggle, errorMessage, isPassword} = useContext(ToggleFlips)
     
     return (
         <>
@@ -32,8 +33,18 @@ const UserProfileDetails = () => {
                         <UserProfileInformations />
                     } 
                     
+
+                    {!isPassword ? 
+                    
+                     <ChangePassword />
+
+                     :
+
+                     <PasswordView />
+
+                    }
                 
-                    <ChangePassword />
+                    
 
                     <p className='profile-header sub-headers'>Account details</p>
                     <div className='account-details'>

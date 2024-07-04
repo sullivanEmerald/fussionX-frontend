@@ -6,13 +6,15 @@ import UserProfileInformations from '../majors/userprofile';
 import UserSetting from '../majors/usersetting';
 import { ToggleFlips } from '../../App';
 import ErrorMessage from '../majors/message';
+import PasswordView from '../majors/passwordview';
+import ChangePassword from '../majors/setpassword';
 
 
 const ProfileInformations = () => {
     const {users} =  useUsers() 
     const {getUser} =  useContext(UserRecords)
     const [userInfo, setUserInfo] = useState({})
-    const {isToggle, errorMessage} = useContext(ToggleFlips)
+    const {isToggle, errorMessage, isPassword} = useContext(ToggleFlips)
     
   
     useEffect(() => {
@@ -48,20 +50,15 @@ const ProfileInformations = () => {
 
                         }
                         
-                    
-                        <div className='password-main-section'>
-                            <p className='profile-header sub-headers'>Password Setting</p>
 
-                            <div className='password-section'>
-                                <div className='password-sect'>
-                                    <span>Password</span>
-                                    <img src="/images/icons/EyeClosed.png" alt="logo" /> 
-                                </div>
-                                <span>*************</span>
-                                <button className='change-password-button'>Change password</button>
-                            </div>
-                           
-                        </div>
+                        {isPassword ? 
+
+                            <ChangePassword />
+
+                            :
+                            
+                            <PasswordView />
+                        }
 
                         <p className='profile-header sub-headers'>Account details</p>
                         <div className='account-details'>

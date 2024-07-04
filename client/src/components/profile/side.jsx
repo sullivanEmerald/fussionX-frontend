@@ -4,7 +4,12 @@ import { ToggleFlips } from "../../App";
 import { useContext } from "react";
 
 const Aside = () => {
-    const {setToggle} = useContext(ToggleFlips)
+    const {setToggle, setIsPassword} = useContext(ToggleFlips)
+
+    const changeToggle = async () => {
+       await setIsPassword(false)
+       await setToggle(false)
+    }
     
     return  (
         <>
@@ -41,7 +46,7 @@ const Aside = () => {
                         </Link>
                     </div>
                     <div>
-                        <Link to={'/settings'} onClick={() => setToggle(false)} className="links"><img src="/images/sideicons/setting.png" className="link-icons" alt="logo" />
+                        <Link to={'/settings'} onClick={() => changeToggle()} className="links"><img src="/images/sideicons/setting.png" className="link-icons" alt="logo" />
                             <span>Setting</span>
                         </Link>
                     </div>

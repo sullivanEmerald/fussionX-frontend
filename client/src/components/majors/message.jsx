@@ -8,7 +8,7 @@ const ErrorMessage = () => {
     useEffect(() => {
         const timerId = setTimeout(() => {
             setErrorMessage('');
-        }, 8000);
+        }, 5000);
     
         return () => clearTimeout(timerId);
     }, [setErrorMessage]);

@@ -1264,7 +1264,7 @@
   border-radius: 10px;
 }
 
-.profile-details input:focus, .profile-setting input:focus{
+.profile-details input:focus, .profile-setting input:focus, .pass-comfirm-profile input:focus{
   border: 1px solid #FF6C04;
   outline: none;
 }
@@ -1400,7 +1400,7 @@
   line-height: 18.23px;
 }
 
-.display-profile-setting input, .profile-setting input{
+.display-profile-setting input{
   width: 282px;
   height: 40px;
   border-radius: 8px;
@@ -1422,6 +1422,10 @@
   display: flex;
   flex-wrap: nowrap;
   padding: 5px 0;
+}
+
+.pass-comfirm-profile input::placeholder{
+  color: #8e8c8b;
 }
 
 
@@ -1515,7 +1519,7 @@
   justify-content: flex-start;
   background:#110507;
   gap: 25px;
-  /* position: fixed; */
+  /* position: fixed; */ 
 }
 
 
