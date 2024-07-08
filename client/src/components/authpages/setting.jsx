@@ -14,7 +14,8 @@ const ProfileInformations = () => {
     const {users} =  useUsers() 
     const {getUser} =  useContext(UserRecords)
     const [userInfo, setUserInfo] = useState({})
-    const {isToggle, errorMessage, isPassword} = useContext(ToggleFlips)
+    const { state } = useContext(ToggleFlips)
+    const { errorMessage, isPassword, isToggle} = state;
     
   
     useEffect(() => {

@@ -8,7 +8,9 @@ import ErrorMessage from '../majors/message';
 import PasswordView from '../majors/passwordview';
 
 const UserProfileDetails = () => { 
-    const {isToggle, errorMessage, isPassword} = useContext(ToggleFlips)
+
+    const { state } = useContext(ToggleFlips)
+    const { errorMessage, isPassword, isToggle} = state;
     
     return (
         <>
@@ -36,11 +38,11 @@ const UserProfileDetails = () => {
 
                     {!isPassword ? 
                     
-                     <ChangePassword />
+                         <ChangePassword />
 
                      :
 
-                     <PasswordView />
+                        <PasswordView />
 
                     }
                 

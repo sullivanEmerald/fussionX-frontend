@@ -5,10 +5,11 @@ import { useUsers } from '../../context/user';
 import { ToggleFlips } from '../../App';
 import * as validate from 'yup';
 import PreLoader from './laoder';
+import { ACTIONS } from '../../actions/app';
 
 const UserSetting = () => {
 
-    const {isToggle, setToggle, setErrorMessage, setUserReturnedMessage} = useContext(ToggleFlips)
+    const {state, dispatch} = useContext(ToggleFlips)
     const {getUser, setUser} = useContext(UserRecords)
     const {users, setUsers} = useUsers()
     const [isProcessing, setIsProcessing] = useState(false)
@@ -83,9 +84,9 @@ const UserSetting = () => {
 
                         const {error} = await response.json();
 
-                        await setUserReturnedMessage(false);
+                         dispatch({ type : ACTIONS.SET_USER_RETURNED_MESSAGE, payload : false});
 
-                        await setErrorMessage(error)
+                        dispatch({ type : ACTIONS.SET_ERROR_MESSAGE, payload : error})
 
                     } else {
 
@@ -93,17 +94,17 @@ const UserSetting = () => {
 
                         const { firstname, surname, email, phone, } = formData;
 
-                        await setUsers((previousUsers) => previousUsers.map((item) => item._id === user._id ? {...item, name : firstname, surname : surname, email : email, phone : phone} : item))
+                        setUsers((previousUsers) => previousUsers.map((item) => item._id === user._id ? {...item, name : firstname, surname : surname, email : email, phone : phone} : item))
 
                         const updatedUser = {...getUser, name: firstname, surname: surname, email: email, phone: phone };
 
-                        await setUser(updatedUser);
+                        setUser(updatedUser);
 
-                        await setToggle((prev) => !prev)
+                        dispatch({ type : ACTIONS.TOGGLE})
 
-                        await setUserReturnedMessage(true);
+                        dispatch({ type :  ACTIONS.SET_USER_RETURNED_MESSAGE, payload : true});
 
-                        await setErrorMessage(msg);
+                        dispatch({ type  :  ACTIONS.SET_ERROR_MESSAGE , payload: msg});
 
                     }
         } catch (error) {   
@@ -152,7 +153,7 @@ const UserSetting = () => {
 
                 </form>
 
-                {isToggle && <img onClick={() => setToggle((prev) => !prev)} className='backButton-profile' src='images/dashboard/scrollUp.png' title='back to profile' alt='logo'/> }
+                {state.isToggle && <img onClick={() => dispatch({ type : ACTIONS.TOGGLE})} className='backButton-profile' src='images/dashboard/scrollUp.png' title='back to profile' alt='logo'/> }
         </div>
     )
 }

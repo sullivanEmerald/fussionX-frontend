@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route,  } from 'react-router-dom';
 import Home from './pages/home';
 import Register from './components/authpages/register';
 import Login from './components/authpages/login';
-import { useEffect, useState, createContext } from 'react';
+import { useEffect, useState, createContext, useReducer } from 'react';
 import User from './components/authpages/user';
 import './App.css'
 import Profile from './pages/profile';
@@ -18,6 +18,14 @@ import ResetPasssword from './pages/reset';
 import AdminIndexPage from './admin/pages/home';
 import AdminRoute from './middleware/secureadmin';
 import { PredictionProvider } from './context/predictions';
+import { ACTIONS } from './actions/app';
+
+const INITIAL_STATE = {
+  isToggle : false,
+  isPassword : false,
+  errorMessage  : '',
+  userReturnedMessage : false,
+}
 
 export const LoginContext = createContext({
   islogged: false,
@@ -39,26 +47,45 @@ export const UserImage = createContext({
 })
 
 export const ToggleFlips = createContext({
-  isToggle : false,
-  setToggle : () => {},
-  errorMessage : '',
-  setErrorMessage : () => {},
-  userReturnedMessage :false,
-  setUserReturnedMessage : () => {},
-  isPassword: false,
-  setIsPassword : () => {}
-})
+  state: INITIAL_STATE,
+  dispatch: () => {},
+});
 
+
+const appReducer = (state, action) => {
+  switch (action.type) {
+    case ACTIONS.TOGGLE :
+      return {
+        ...state,
+        isToggle : !action.payload ?  action.payload : !state.isToggle
+      }
+    case ACTIONS.SET_IS_PASSWORD : 
+      return {
+        ...state,
+        isPassword : !action.payload ? action.payload : !state.isPassword 
+      }
+    case ACTIONS.SET_ERROR_MESSAGE :
+      return {
+        ...state,
+        errorMessage : action.payload
+      }
+    case ACTIONS.SET_USER_RETURNED_MESSAGE : 
+      return {
+        ...state,
+        userReturnedMessage  : action.payload
+      }
+      default :
+       return state
+  }
+}
 
 function App() {
   const [islogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [getUser, setUser] = useState(null);
   const [userProfilePicture, setUserImage] = useState('')
-  const [isToggle, setToggle] =  useState(false)
-  const [isPassword,setIsPassword] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
-  const [userReturnedMessage, setUserReturnedMessage] = useState(false)
+
+  const [state, dispatch] = useReducer(appReducer, INITIAL_STATE)
 
 
   useEffect(() => {
@@ -92,7 +119,7 @@ function App() {
         <UserRecords.Provider value={{ getUser, setUser }}>
           <UserImage.Provider value={{userProfilePicture, setUserImage }}>
           <PredictionProvider>
-            <ToggleFlips.Provider value={{ isToggle, setToggle, errorMessage, setErrorMessage, userReturnedMessage, setUserReturnedMessage, isPassword, setIsPassword }} >
+            <ToggleFlips.Provider value={{ state, dispatch }} >
             <Router>
               <Routes>
                 <Route path="/" element={<Home />} />

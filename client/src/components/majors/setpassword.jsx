@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import { ToggleFlips } from "../../App";
+import { ACTIONS } from '../../actions/app';
 
 const ChangePassword = () => {
-    const { isPassword, setIsPassword } = useContext(ToggleFlips);
+    const { state, dispatch } = useContext(ToggleFlips);
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -51,9 +52,9 @@ const ChangePassword = () => {
                     </div>
                 </div>
                 <button className='change-password-button'>Save Changes</button>
-                {isPassword && (
+                {state.isPassword && (
                     <img
-                        onClick={() => setIsPassword((prev) => !prev)}
+                        onClick={() => dispatch({ type : ACTIONS.SET_IS_PASSWORD })}
                         className='backButton-profile'
                         src='images/dashboard/scrollUp.png'
                         title='back to profile'

@@ -2,10 +2,11 @@ import { ToggleFlips } from "../../App";
 import { useContext } from "react";
 import { UserRecords } from "../../App";
 import { useEffect, useState} from "react";
+import { ACTIONS } from "../../actions/app";
 
 const UserProfileInformations = () => {
     const { getUser } =  useContext(UserRecords)
-    const {setToggle} = useContext(ToggleFlips)
+    const { dispatch } = useContext(ToggleFlips)
     const [userProfile, setUserProfile] = useState(getUser)
 
     useEffect(() => {
@@ -34,7 +35,7 @@ const UserProfileInformations = () => {
                         <p>Phone Number</p>
                         <span>(+234){userProfile.phone}</span>
                     </div>
-                <button onClick={() => setToggle((prev) => !prev)} className='edit-button'>Edit Profile</button>
+                <button onClick={() => dispatch({ type  : ACTIONS.TOGGLE})} className='edit-button'>Edit Profile</button>
             </div>
         </>
     )

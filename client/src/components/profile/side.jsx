@@ -2,14 +2,14 @@ import ProfileImage from "../profile-image";
 import {Link} from 'react-router-dom'
 import { ToggleFlips } from "../../App";
 import { useContext } from "react";
-
+import { ACTIONS } from "../../actions/app";
 const Aside = () => {
-    const {setToggle, setIsPassword} = useContext(ToggleFlips)
+    const {dispatch} = useContext(ToggleFlips)
 
     const changeToggle = async () => {
-       await setIsPassword(false)
-       await setToggle(false)
-    }
+        dispatch({ type  : ACTIONS.TOGGLE, payload : false})
+        dispatch({ type  : ACTIONS.SET_IS_PASSWORD, payload : false})
+   }
     
     return  (
         <>
