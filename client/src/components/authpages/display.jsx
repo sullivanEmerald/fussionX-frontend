@@ -1,22 +1,21 @@
 import ProfileDisplay from '../profile';
 import UserSetting from '../majors/usersetting';
 import { useContext } from 'react';
-import ChangePassword from '../majors/setpassword';
+import ChangePasswordSetting from '../majors/setpassword';
 import UserProfileInformations from '../majors/userprofile';
 import { ToggleFlips } from '../../App';
-import ErrorMessage from '../majors/message';
 import PasswordView from '../majors/passwordview';
+import ErrorMessage from '../majors/message';
 
 const UserProfileDetails = () => { 
 
     const { state } = useContext(ToggleFlips)
-    const { errorMessage, isPassword, isToggle} = state;
     
     return (
         <>
             <main className='profile-setting-main'>
 
-            {errorMessage !== '' && <ErrorMessage />}
+            {state.errorMessage !== '' && <ErrorMessage />}
 
             <section className="profile-info-sect display-profile-setting">
                     
@@ -26,7 +25,7 @@ const UserProfileDetails = () => {
                 <span className='profile-header'>Profile setting</span>
 
 
-                    {!isToggle ? 
+                    {!state.isToggle ? 
 
                         <UserSetting />
 
@@ -36,9 +35,9 @@ const UserProfileDetails = () => {
                     } 
                     
 
-                    {!isPassword ? 
+                    {!state.isPassword ? 
                     
-                         <ChangePassword />
+                         <ChangePasswordSetting />
 
                      :
 

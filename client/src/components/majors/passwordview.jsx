@@ -2,9 +2,9 @@ import { ToggleFlips } from "../../App";
 import { useContext } from "react";
 import { ACTIONS } from "../../actions/app";
 
-const PasswordView = () => {
+const PasswordView = () => {    
     
-    const { dispatch} = useContext(ToggleFlips)
+    const { dispatch } = useContext(ToggleFlips)
 
     return (
         <>
@@ -16,7 +16,7 @@ const PasswordView = () => {
                     <img src="/images/icons/EyeClosed.png" alt="logo" /> 
                 </div>
                     <span>*************</span>
-                    <button className='change-password-button' onClick={() => dispatch({ type : ACTIONS.SET_IS_PASSWORD})}>Change password</button>
+                    <button className='change-password-button' onClick={() => dispatch({ type : ACTIONS.SET_IS_PASSWORD, payload : true})}>Change password</button>
                 </div>
                            
          </div>

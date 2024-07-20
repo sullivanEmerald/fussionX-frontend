@@ -1,15 +1,8 @@
 import ProfileImage from "../profile-image";
 import {Link} from 'react-router-dom'
-import { ToggleFlips } from "../../App";
-import { useContext } from "react";
-import { ACTIONS } from "../../actions/app";
-const Aside = () => {
-    const {dispatch} = useContext(ToggleFlips)
+import ToggleInteface from "../../functions/toggle";
 
-    const changeToggle = async () => {
-        dispatch({ type  : ACTIONS.TOGGLE, payload : false})
-        dispatch({ type  : ACTIONS.SET_IS_PASSWORD, payload : false})
-   }
+const Aside = () => {
     
     return  (
         <>
@@ -46,7 +39,7 @@ const Aside = () => {
                         </Link>
                     </div>
                     <div>
-                        <Link to={'/settings'} onClick={() => changeToggle()} className="links"><img src="/images/sideicons/setting.png" className="link-icons" alt="logo" />
+                        <Link to={'/settings'} onClick={() => ToggleInteface()} className="links"><img src="/images/sideicons/setting.png" className="link-icons" alt="logo" />
                             <span>Setting</span>
                         </Link>
                     </div>

@@ -7,7 +7,7 @@ import UserSetting from '../majors/usersetting';
 import { ToggleFlips } from '../../App';
 import ErrorMessage from '../majors/message';
 import PasswordView from '../majors/passwordview';
-import ChangePassword from '../majors/setpassword';
+import ChangePasswordSetting from '../majors/setpassword';
 
 
 const ProfileInformations = () => {
@@ -15,9 +15,7 @@ const ProfileInformations = () => {
     const {getUser} =  useContext(UserRecords)
     const [userInfo, setUserInfo] = useState({})
     const { state } = useContext(ToggleFlips)
-    const { errorMessage, isPassword, isToggle} = state;
-    
-  
+      
     useEffect(() => {
         if (getUser?.id) {
             const userId = getUser.id;
@@ -28,10 +26,10 @@ const ProfileInformations = () => {
 
 
     return (    
-        <div className={errorMessage !== '' ? 'profile-cover-error' : 'profile-cover'}>
+        <div className={state.errorMessage !== '' ? 'profile-cover-error' : 'profile-cover'}>
 
 
-            {errorMessage !== '' && <ErrorMessage />}
+            {state.errorMessage !== '' && <ErrorMessage />}
             
 
             <section className="profile-info-sect">
@@ -41,7 +39,7 @@ const ProfileInformations = () => {
                 <div>
                     <span className='profile-header'>Profile setting</span>
 
-                        {isToggle ? 
+                        {state.isToggle ? 
                         
                         <UserSetting /> 
 
@@ -52,9 +50,9 @@ const ProfileInformations = () => {
                         }
                         
 
-                        {isPassword ? 
+                        {state.isPassword ? 
 
-                            <ChangePassword />
+                            <ChangePasswordSetting />
 
                             :
                             

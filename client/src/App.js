@@ -57,12 +57,12 @@ const appReducer = (state, action) => {
     case ACTIONS.TOGGLE :
       return {
         ...state,
-        isToggle : !action.payload ?  action.payload : !state.isToggle
+        isToggle : action.payload ?? !state.isToggle
       }
     case ACTIONS.SET_IS_PASSWORD : 
       return {
         ...state,
-        isPassword : !action.payload ? action.payload : !state.isPassword 
+        isPassword : action.payload ? !state.isPassword : action.payload
       }
     case ACTIONS.SET_ERROR_MESSAGE :
       return {
@@ -109,9 +109,6 @@ function App() {
     }
   }, [setIsAdmin, setIsLogged]);
 
-
-  console.log(`the admin value is ${isAdmin}`)
-  console.log(`the admin value is ${islogged}`)
 
   return (
     <LoginContext.Provider value={{ islogged, setIsLogged }}>
