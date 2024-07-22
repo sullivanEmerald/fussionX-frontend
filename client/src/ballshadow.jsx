@@ -5,7 +5,7 @@ const BallShadow = (props) => {
         <>
             <div className="login  auth-controller-logo relative">
                 <section className="Unleash-section relative">
-                    <img className="login-img" src="/images/soccerball.png" />
+                    <img className="login-img" src="/images/soccerball.png" alt="fussionX football" />
                 <div className="relative blur">
                     <section className="relative ball-content">
                         <img src="/images/logo.png" alt="logo"/>

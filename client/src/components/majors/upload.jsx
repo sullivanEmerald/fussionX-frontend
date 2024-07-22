@@ -12,7 +12,7 @@ const UploadImageForm = (props) => {
     const {images, setImages} = useImages()
     const {setUserImage} =  useContext(UserImage)
     const {error, setError} = useState('')
-    const {setErrorMessage, setUserReturnedMessage, userReturnedMessage} = useContext(ToggleFlips)
+    const {setErrorMessage, setUserReturnedMessage} = useContext(ToggleFlips)
     const [isProcessing, setIsProcessing] =  useState(false)
 
 

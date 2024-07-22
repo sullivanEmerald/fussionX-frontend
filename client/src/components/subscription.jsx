@@ -3,7 +3,7 @@ import '../App.css'
 const Subscription = () => {
     return (
         <main className="relative">
-            <img src="images/sideellipse.png" className="shadow-image"/>
+            <img src="images/sideellipse.png" className="shadow-image" alt="fussionX-logo" />
             <div className="subscriptionSection relative">
                 <section className="subscriptionSectionMain" >
                     <div>
@@ -14,7 +14,7 @@ const Subscription = () => {
                             <h6>Monthly Biling</h6>
                         </div>
                         <div className="sub-arrow">
-                            <img src="images/arrow.png" />
+                            <img src="images/arrow.png" alt="fussionX-logo" />
                             <span>Save 20% per month</span>
                         </div>
                     </div>
@@ -26,11 +26,11 @@ const Subscription = () => {
                     </div>
                     <div className="card-top-container">
                     <div className="card-top">
-                    <img src="images/orange-circle.png"/>
+                    <img src="images/orange-circle.png"alt="fussionX-logo" />
                     <img src="images/lines.png" style={{
                         height: "400px",
                         objectFit: "cover"
-                    }} />
+                    }} alt="fussionX-logo" />
                         <div className="card-shadow"></div>
 
                     </div>
@@ -46,11 +46,11 @@ const Subscription = () => {
                     <div className="card-top-container">
                     <div className="card-top">
                     {/* <img src="images/subscribtion/background.png" /> */}
-                    <img src="images/orange-circle.png"/>
+                    <img src="images/orange-circle.png" alt="fussionX-logo" />
                     <img src="images/lines.png" style={{
                         height: "400px",
                         objectFit: "cover"
-                    }} />
+                    }} alt="fussionX-logo" />
                         <div className="card-shadow"></div>
 
                     </div>

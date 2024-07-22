@@ -11,7 +11,7 @@ const ChangeProfileForm = ({ handleClose}) => {
     const {userProfilePicture} = useContext(UserFormerImage)
     const [processing, setProcessing] =  useState(false)
     const [error, setError] = useState('')
-    const {images, setImages} = useImages()
+    const {setImages} = useImages()
     const {setUserImage} = useContext(UserImage)
     const {setErrorMessage} = useContext(ToggleFlips)
 

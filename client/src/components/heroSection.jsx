@@ -29,22 +29,22 @@ export default function HeroSection(){
                 </div>
                 <div className="percentSection">
             <section>
-                <img src="/images/icons/first.png"/>
+                <img src="/images/icons/first.png" alt="fussionX"/>
                 <p className="precent-number">85/100</p>
                 <p>Accurate predictions</p>
             </section>
             <section>
-                <img src="/images/icons/second.png"/>
+                <img src="/images/icons/second.png" alt="fussionX"/>
                 <p className="precent-number">$10,000</p>
                 <p>Made in 1 year</p>
             </section>
             <section>
-                <img src="/images/icons/third.png"/>
+                <img src="/images/icons/third.png" alt="fussionX"/>
                 <p className="precent-number">100,000</p>
                 <p>Daily users</p>
             </section>
             <section>
-                <img src="/images/icons/first.png"/>
+                <img src="/images/icons/first.png" alt="fussionX"/>
                 <p className="precent-number">15</p>
                 <p>Trusted partners</p>
             </section>

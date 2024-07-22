@@ -1,7 +1,5 @@
 import ProfileDisplay from '../profile';
-import { useUsers } from '../../context/user';
-import { useState, useEffect, useContext } from 'react';
-import { UserRecords } from '../../App';
+import {useContext } from 'react';
 import UserProfileInformations from '../majors/userprofile';
 import UserSetting from '../majors/usersetting';
 import { ToggleFlips } from '../../App';
@@ -11,18 +9,18 @@ import ChangePasswordSetting from '../majors/setpassword';
 
 
 const ProfileInformations = () => {
-    const {users} =  useUsers() 
-    const {getUser} =  useContext(UserRecords)
-    const [userInfo, setUserInfo] = useState({})
+    // const {users} =  useUsers() 
+    // const {getUser} =  useContext(UserRecords)
+    // const [userInfo, setUserInfo] = useState({})
     const { state } = useContext(ToggleFlips)
       
-    useEffect(() => {
-        if (getUser?.id) {
-            const userId = getUser.id;
-            const foundUser = users.find((user) => user._id === userId);
-            setUserInfo(foundUser || {});
-        }
-    }, [getUser, users]);
+    // useEffect(() => {
+    //     if (getUser?.id) {
+    //         const userId = getUser.id;
+    //         const foundUser = users.find((user) => user._id === userId);
+    //         setUserInfo(foundUser || {});
+    //     }
+    // }, [getUser, users]);
 
 
     return (    

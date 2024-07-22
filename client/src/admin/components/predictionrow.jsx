@@ -6,7 +6,7 @@ import {useState} from 'react'
 
 
 const PredictionTableRow = (props) => {
-const { away, date, home, prediction, stage, time, won, _id , changeState} = props
+const { away, date, home, prediction, stage, time, _id , changeState} = props
 const {predictions, setPredictions} = usePredictions()
 const [isModalVisible, setVisible] =  useState(false)
 

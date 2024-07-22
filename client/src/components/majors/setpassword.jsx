@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { ToggleFlips } from '../../App';
 import { ACTIONS } from '../../actions/app';
    

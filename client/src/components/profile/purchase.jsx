@@ -13,7 +13,7 @@ const PurchaseRate = () => {
                             <h6>Monthly Biling</h6>
                         </div>
                         <div className="purchase-arrow">
-                            <img src="images/arrow.png" />
+                            <img src="images/arrow.png" alt="fussion-logo"/>
                             <span>Save 20% per month</span>
                         </div>
                     </div>
@@ -26,8 +26,8 @@ const PurchaseRate = () => {
                     </div>
                     <div className="card-top-container">
                     <div className="card-top">
-                    <img src="images/orange-circle.png"/>
-                    <img src="images/lines.png" style={{
+                    <img src="images/orange-circle.png" alt="fussion-logo" />
+                    <img src="images/lines.png" alt="fussion-logo" style={{
                         height: "400px",
                         objectFit: "cover"
                     }} />
@@ -45,9 +45,9 @@ const PurchaseRate = () => {
                     </div>
                     <div className="card-top-container">
                     <div className="card-top">
-                    {/* <img src="images/subscribtion/background.png" /> */}
-                    <img src="images/orange-circle.png"/>
-                    <img src="images/lines.png" style={{
+                    {/* <img src="images/subscribtion/background.png" alt="fussion-logo" /> */}
+                    <img src="images/orange-circle.png" alt="fussion-logo"/>
+                    <img src="images/lines.png" alt="fussionX-logo" style={{
                         height: "400px",
                         objectFit: "cover"
                     }} />
@@ -65,8 +65,8 @@ const PurchaseRate = () => {
                     </div>
                     <div className="card-top-container">
                     <div className="card-top">
-                    <img src="images/orange-circle.png"/>
-                    <img src="images/lines.png" style={{
+                    <img src="images/orange-circle.png" alt="fussion-logo"/>
+                    <img src="images/lines.png" alt="fussion-logo" style={{
                         height: "400px",
                         objectFit: "cover"
                     }} />

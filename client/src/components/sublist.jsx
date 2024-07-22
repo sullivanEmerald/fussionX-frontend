@@ -3,17 +3,17 @@ export const SubcribtionList = (props) => {
     return (
         <section style={{ color : !isColored ? '#FFFFFF' : '#7E563B' }} className='footerIcon'>
             <section >
-                <img src="images/fontIcon.png" />
+                <img src="images/fontIcon.png" alt="fussionX-logo" />
                 <p>{first}</p>
             </section>
 
             <section>
-                <img src="images/fontIcon.png" />
+                <img src="images/fontIcon.png" alt="fussionX-logo" />
                 <p>{second}</p>
             </section>
 
             <section>
-                <img src="images/fontIcon.png" />
+                <img src="images/fontIcon.png" alt="fussionX-logo" />
                 <p>{third}</p>
             </section>
     </section>

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Form } from 'react-bootstrap';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup'
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import { usePredictions } from '../../context/predictions';
 
 const PredictionModal = (props) => {
@@ -20,7 +20,7 @@ const PredictionModal = (props) => {
         time: yup.string().required('Time is required'),
       });
 
-      const { register, handleSubmit, formState: { errors } , formState, reset } = useForm({
+      const { register, handleSubmit, formState: { errors } , formState, } = useForm({
         resolver: yupResolver(schema),
 
       });
