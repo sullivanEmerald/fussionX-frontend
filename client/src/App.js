@@ -18,7 +18,7 @@ import ResetPasssword from './pages/reset';
 import AdminIndexPage from './admin/pages/home';
 import AdminRoute from './middleware/secureadmin';
 import { PredictionProvider } from './context/predictions';
-import { ACTIONS } from './actions/app';
+import { ACTIONS } from './Reducer/actions/app';
 
 const INITIAL_STATE = {
   isToggle : false,
