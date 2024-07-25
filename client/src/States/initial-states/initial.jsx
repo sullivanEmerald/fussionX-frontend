@@ -10,4 +10,4 @@
 
 }
 
-export { ProjectInitials as Initials}
+export { ProjectInitials as INITIALS}

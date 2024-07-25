@@ -18,14 +18,7 @@ import ResetPasssword from './pages/reset';
 import AdminIndexPage from './admin/pages/home';
 import AdminRoute from './middleware/secureadmin';
 import { PredictionProvider } from './context/predictions';
-import { ACTIONS } from './Reducer/actions/app';
 
-const INITIAL_STATE = {
-  isToggle : false,
-  isPassword : false,
-  errorMessage  : '',
-  userReturnedMessage : false,
-}
 
 export const LoginContext = createContext({
   islogged: false,
@@ -46,47 +39,14 @@ export const UserImage = createContext({
   setUserImage : () => {}
 })
 
-export const ToggleFlips = createContext({
-  state: INITIAL_STATE,
-  dispatch: () => {},
-});
 
 
-const appReducer = (state, action) => {
-  switch (action.type) {
-    case ACTIONS.TOGGLE :
-      return {
-        ...state,
-        isToggle : action.payload ?? !state.isToggle
-      }
-    case ACTIONS.SET_IS_PASSWORD : 
-      return {
-        ...state,
-        isPassword : action.payload ? !state.isPassword : action.payload
-      }
-    case ACTIONS.SET_ERROR_MESSAGE :
-      return {
-        ...state,
-        errorMessage : action.payload
-      }
-    case ACTIONS.SET_USER_RETURNED_MESSAGE : 
-      return {
-        ...state,
-        userReturnedMessage  : action.payload
-      }
-      default :
-       return state
-  }
-}
 
 function App() {
   const [islogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [getUser, setUser] = useState(null);
   const [userProfilePicture, setUserImage] = useState('')
-
-  const [state, dispatch] = useReducer(appReducer, INITIAL_STATE)
-
 
   useEffect(() => {
     // Check localStorage for isAdmin and isUser flags when the app loads
@@ -116,7 +76,6 @@ function App() {
         <UserRecords.Provider value={{ getUser, setUser }}>
           <UserImage.Provider value={{userProfilePicture, setUserImage }}>
           <PredictionProvider>
-            <ToggleFlips.Provider value={{ state, dispatch }} >
             <Router>
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -139,7 +98,6 @@ function App() {
                 <Route path="/admin" element={<AdminRoute isAdmin={isAdmin} component={AdminIndexPage} />} />
               </Routes>
           </Router> 
-          </ToggleFlips.Provider>
           </PredictionProvider>
           </UserImage.Provider>
         </UserRecords.Provider>
