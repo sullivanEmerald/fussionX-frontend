@@ -2,7 +2,7 @@ import ProfileDisplay from '../profile';
 import {useContext } from 'react';
 import UserProfileInformations from '../majors/userprofile';
 import UserSetting from '../majors/usersetting';
-import { ToggleFlips } from '../../App';
+import { ToggleFlips } from '../../States/app-context/appContext';
 import ErrorMessage from '../majors/message';
 import PasswordView from '../majors/passwordview';
 import ChangePasswordSetting from '../majors/setpassword';

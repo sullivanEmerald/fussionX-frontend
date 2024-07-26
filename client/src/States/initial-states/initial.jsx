@@ -6,7 +6,12 @@
       isPassword : false,
       errorMessage  : '',
       userReturnedMessage : false,
+      
     },
+
+    USER_STATE : {
+        profilePicture : ''
+    }
 
 }
 

@@ -4,7 +4,9 @@ import { ACTIONS } from "../actions/app"
 // REDUCER FOR THE WHOLE ROUTES
 
 const APP_REDUCER = (state, action) => {
-    const { APP_ACTIONS} = ACTIONS
+
+    const { APP_ACTIONS} = ACTIONS;
+
     switch (action.type) {
       case APP_ACTIONS.TOGGLE :
         return {
@@ -27,6 +29,7 @@ const APP_REDUCER = (state, action) => {
           userReturnedMessage  : action.payload
         }
         default :
+        
          return state
     }
   }

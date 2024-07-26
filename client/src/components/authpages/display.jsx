@@ -3,7 +3,7 @@ import UserSetting from '../majors/usersetting';
 import { useContext } from 'react';
 import ChangePasswordSetting from '../majors/setpassword';
 import UserProfileInformations from '../majors/userprofile';
-import { ToggleFlips } from '../../App';
+import { ToggleFlips } from '../../States/app-context/appContext';
 import PasswordView from '../majors/passwordview';
 import ErrorMessage from '../majors/message';
 
