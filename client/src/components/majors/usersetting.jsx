@@ -2,13 +2,13 @@
 import { UserRecords } from '../../App';
 import { useState, useEffect, useContext} from 'react';
 import { useUsers } from '../../context/user';
-import { ToggleFlips } from '../../App';
+import { ToggleFlips } from '../../States/app-context/appContext';
 import * as validate from 'yup';
 import PreLoader from './laoder';
-import { ACTIONS } from '../../actions/app';
+import { ACTIONS } from '../../States/actions/app';
 
 const UserSetting = () => {
-
+    const { APP_ACTIONS } =  ACTIONS;
     const {state, dispatch} = useContext(ToggleFlips)
     const {getUser, setUser} = useContext(UserRecords)
     const {users, setUsers} = useUsers()
@@ -84,9 +84,9 @@ const UserSetting = () => {
 
                         const {error} = await response.json();
 
-                         dispatch({ type : ACTIONS.SET_USER_RETURNED_MESSAGE, payload : false});
+                         dispatch({ type : APP_ACTIONS.SET_USER_RETURNED_MESSAGE, payload : false});
 
-                        dispatch({ type : ACTIONS.SET_ERROR_MESSAGE, payload : error})
+                        dispatch({ type : APP_ACTIONS.SET_ERROR_MESSAGE, payload : error})
 
                     } else {
 
@@ -100,11 +100,11 @@ const UserSetting = () => {
 
                         setUser(updatedUser);
 
-                        dispatch({ type : ACTIONS.TOGGLE})
+                        dispatch({ type : APP_ACTIONS.TOGGLE})
 
-                        dispatch({ type :  ACTIONS.SET_USER_RETURNED_MESSAGE, payload : true});
+                        dispatch({ type :  APP_ACTIONS.SET_USER_RETURNED_MESSAGE, payload : true});
 
-                        dispatch({ type  :  ACTIONS.SET_ERROR_MESSAGE , payload: msg});
+                        dispatch({ type  :  APP_ACTIONS.SET_ERROR_MESSAGE , payload: msg});
 
                     }
         } catch (error) {   

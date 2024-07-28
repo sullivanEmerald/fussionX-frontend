@@ -3,16 +3,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useContext, useState} from "react";
 import { useImages } from '../../context/image';
-import { UserImage } from '../../App';
-import { ToggleFlips } from '../../App';
+import { ACTIONS } from '../../States/actions/app';
+import { ToggleFlips, UserState } from '../../States/app-context/appContext';
 
 
 const UploadImageForm = (props) => {
+    const {APP_ACTIONS, USER_ACTIONS} = ACTIONS;
     const {handleClose} = props
     const {images, setImages} = useImages()
-    const {setUserImage} =  useContext(UserImage)
     const {error, setError} = useState('')
-    const {setErrorMessage, setUserReturnedMessage} = useContext(ToggleFlips)
+    const {dispatch} = useContext(ToggleFlips)
+    const {userDispatch} = useContext(UserState)
     const [isProcessing, setIsProcessing] =  useState(false)
 
 
@@ -69,16 +70,15 @@ const UploadImageForm = (props) => {
             if (response.ok) {
                 const { profilePic, msg } = await response.json()  
 
-                await setUserImage(profilePic.image)
+                userDispatch({ type : USER_ACTIONS.SET_PROFILE_PICTURE, paylaod : profilePic.image})
 
-                await setUserReturnedMessage(true);
+                dispatch({ type :  APP_ACTIONS.SET_USER_RETURNED_MESSAGE, paylaod : true});
+
+                dispatch({ type :  APP_ACTIONS.SET_ERROR_MESSAGE, paylaod : msg})
+
+                setImages(!images.length ? [profilePic] : [...images, profilePic])
                 
-
-                await setImages(!images.length ? [profilePic] : [...images, profilePic])
-                
-               await  handleClose()
-
-                await setErrorMessage(msg)
+                handleClose()
 
             } else {
                 const {error} = await response.json(); 

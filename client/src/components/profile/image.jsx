@@ -1,24 +1,25 @@
 
-import { UserImage } from "../../App";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { ToggleFlips } from "../../App";
-import { ACTIONS } from "../../actions/app";
+import { UserState, ToggleFlips } from "../../States/app-context/appContext";
+import { ACTIONS } from "../../States/actions/app";
 
 const UpdateProfileImage = () => {
-    const {userProfilePicture} = useContext(UserImage)
-    const {dispatch} = useContext(ToggleFlips)
+    const {APP_ACTIONS} = ACTIONS;
+    const{ dispatch } = useContext(ToggleFlips)
+    const {userState} = useContext(UserState)
+    
 
     const changeToggle = async () => {
-         dispatch({ type  : ACTIONS.TOGGLE, payload : false})
-         dispatch({ type  : ACTIONS.SET_IS_PASSWORD, payload : false})
+         dispatch({ type  : APP_ACTIONS.TOGGLE, payload : false})
+         dispatch({ type  : APP_ACTIONS.SET_IS_PASSWORD, payload : false})
     }
 
     return (
         <>
             
             <Link to={'/profile'} onClick={() => changeToggle()}>
-                <img src={userProfilePicture !== "" ? userProfilePicture : '/images/dashboard/default.jpeg'} className="profile-photo"  alt="logo" />
+                <img src={userState.profilePicture !== "" ? userState.profilePicture : '/images/dashboard/default.jpeg'} className="profile-photo"  alt="logo" />
             </Link>
         </>
     )

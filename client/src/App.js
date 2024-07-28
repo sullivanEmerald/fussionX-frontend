@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route,  } from 'react-router-dom';
 import Home from './pages/home';
 import Register from './components/authpages/register';
 import Login from './components/authpages/login';
-import { useEffect, useState, createContext, useReducer } from 'react';
+import { useEffect, useState, createContext } from 'react';
 import User from './components/authpages/user';
 import './App.css'
 import Profile from './pages/profile';
@@ -34,10 +34,6 @@ export const UserRecords = createContext({
   setUser: () => {},
 });
 
-export const UserImage = createContext({
-  userProfilePicture : '',
-  setUserImage : () => {}
-})
 
 
 
@@ -46,7 +42,6 @@ function App() {
   const [islogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [getUser, setUser] = useState(null);
-  const [userProfilePicture, setUserImage] = useState('')
 
   useEffect(() => {
     // Check localStorage for isAdmin and isUser flags when the app loads
@@ -74,7 +69,6 @@ function App() {
     <LoginContext.Provider value={{ islogged, setIsLogged }}>
       <AdminContext.Provider value={{ isAdmin, setIsAdmin }}>
         <UserRecords.Provider value={{ getUser, setUser }}>
-          <UserImage.Provider value={{userProfilePicture, setUserImage }}>
           <PredictionProvider>
             <Router>
               <Routes>
@@ -99,7 +93,6 @@ function App() {
               </Routes>
           </Router> 
           </PredictionProvider>
-          </UserImage.Provider>
         </UserRecords.Provider>
       </AdminContext.Provider>
     </LoginContext.Provider>

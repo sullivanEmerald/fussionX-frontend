@@ -1,13 +1,10 @@
 import { useContext } from 'react';
-import { ToggleFlips } from '../../App';
-import { ACTIONS } from '../../actions/app';
+import { ToggleFlips } from '../../States/app-context/appContext';
+import { ACTIONS } from '../../States/actions/app';
    
 const ChangePasswordSetting = () => {
     const { state, dispatch } = useContext(ToggleFlips);
-
-    // const togglePasswordVisibility = () => {
-    //     setShowPassword(!showPassword);
-    // };
+    const { APP_ACTIONS} = ACTIONS;
 
     return (
         <div className='password-main-section display-profile-setting'>
@@ -26,7 +23,7 @@ const ChangePasswordSetting = () => {
                 <button className='change-password-button'>Save Changes</button>
                 {state.isPassword && (
                     <img
-                        onClick={() => dispatch({ type : ACTIONS.SET_IS_PASSWORD, payload : true })}
+                        onClick={() => dispatch({ type : APP_ACTIONS.SET_IS_PASSWORD, payload : true })}
                         className='backButton-profile'
                         src='images/dashboard/scrollUp.png'
                         title='back to profile'

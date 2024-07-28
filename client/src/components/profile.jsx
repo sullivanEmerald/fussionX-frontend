@@ -1,18 +1,16 @@
-import { useContext, useState, createContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserRecords } from "../App";
 import UploadProfilePicture from "../modals/profile";
 import UpdateProfileImage from "./profile/image";
-import { UserImage } from "../App";
+import { UserState } from "../States/app-context/appContext";
 import ChangeProfilePicture from "../modals/renew";
-
-export const UserFormerImage = createContext()
 
 
 const ProfileDisplay = () => {
   const { getUser } = useContext(UserRecords);
   const [isShowForm, setShowForm] = useState(false);
-  const {userProfilePicture} = useContext(UserImage)
+  const {userState} = useContext(UserState)
    
   const displayForm = () => {
     setShowForm(true);
@@ -33,11 +31,10 @@ const ProfileDisplay = () => {
   
 
   return (
-        <UserFormerImage.Provider value={{ userProfilePicture }}>
         <div>
 
         {isShowForm ? (
-            userProfilePicture !== "" ? (
+            userState.profilePicture !== "" ? (
               <ChangeProfilePicture show={displayForm} handleClose={closeDisplayForm} />
             ) : (
               <UploadProfilePicture show={displayForm} handleClose={closeDisplayForm} />
@@ -56,7 +53,7 @@ const ProfileDisplay = () => {
             <img src="/images/dashboard/king.png" className="" alt="logo" />
             </div>
 
-            {userProfilePicture !== '' ?
+            { userState.profilePicture !== '' ?
               <button onClick={() => displayForm()} className="change-profile-picture-button">
                 <img src="/images/dashboard/plus.png" className="" alt="logo" />
               </button>
@@ -75,7 +72,6 @@ const ProfileDisplay = () => {
         </div>
         </div>
 
-        </UserFormerImage.Provider>
   );
 };
 

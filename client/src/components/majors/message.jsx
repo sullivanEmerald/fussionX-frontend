@@ -1,8 +1,9 @@
-import { ToggleFlips } from "../../App";
+import { ToggleFlips } from "../../States/app-context/appContext";
 import { useContext, useEffect, useRef } from "react";
-import { ACTIONS } from "../../actions/app";
+import { ACTIONS } from "../../States/actions/app";
 
 const ErrorMessage = () => {
+    const { APP_ACTIONS} = ACTIONS;
     const { state, dispatch } = useContext(ToggleFlips);
     const isMounted = useRef(true);
 
@@ -10,7 +11,7 @@ const ErrorMessage = () => {
         isMounted.current = true;
         const timerId = setTimeout(() => {
             if (isMounted.current) {
-                dispatch({ type: ACTIONS.SET_ERROR_MESSAGE, payload: " " });
+                dispatch({ type: APP_ACTIONS.SET_ERROR_MESSAGE, payload: "" });
             }
         }, 5000);
 
@@ -18,7 +19,7 @@ const ErrorMessage = () => {
             clearTimeout(timerId);
             isMounted.current = false;
         };
-    }, [state.errorMessage, dispatch]);
+    }, [state.errorMessage, dispatch, APP_ACTIONS.SET_ERROR_MESSAGE]);
 
     return (
         <p className={!state.userReturnedMessage ? "profile-error-message" : 'profile-error-success'}>

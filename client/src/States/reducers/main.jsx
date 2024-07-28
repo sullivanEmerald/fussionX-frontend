@@ -6,7 +6,6 @@ import { ACTIONS } from "../actions/app"
 const APP_REDUCER = (state, action) => {
 
     const { APP_ACTIONS} = ACTIONS;
-
     switch (action.type) {
       case APP_ACTIONS.TOGGLE :
         return {

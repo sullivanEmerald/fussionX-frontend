@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import { UserFormerImage } from "../profile";
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import {useForm} from 'react-hook-form'
@@ -9,12 +8,11 @@ import { ToggleFlips, UserState } from "../../States/app-context/appContext";
 import { ACTIONS } from "../../States/actions/app";
 
 const ChangeProfileForm = ({ handleClose}) => {
-    const {userProfilePicture} = useContext(UserFormerImage)
     const [processing, setProcessing] =  useState(false)
     const [error, setError] = useState('')
     const {setImages} = useImages()
     const {dispatch} = useContext(ToggleFlips)
-    const { userDispatch } = useContext(UserState)
+    const { userState, userDispatch } = useContext(UserState)
 
     const schema = yup.object().shape({
         newPhoto: yup
@@ -96,7 +94,7 @@ const ChangeProfileForm = ({ handleClose}) => {
                 <p style={{ textAlign : 'center'}}>Change Profile Avatar</p>
 
                 <div  className="view-former-image">
-                    <img src={userProfilePicture} className="profile-photo" id="renew-photo" alt="logo" />
+                    <img src={userState.profilePicture} className="profile-photo" id="renew-photo" alt="logo" />
                 </div>
 
                 <form  onSubmit={handleSubmit(onSubmit)}>
