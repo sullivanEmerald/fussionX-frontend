@@ -1,10 +1,27 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { ToggleFlips } from '../../States/app-context/appContext';
 import { ACTIONS } from '../../States/actions/app';
    
 const ChangePasswordSetting = () => {
     const { state, dispatch } = useContext(ToggleFlips);
     const { APP_ACTIONS} = ACTIONS;
+    const [getpassword, setpassword] = useState({
+        password : '',
+        confirmPassword : ''
+    })
+
+
+    const setNewPassword = (e) => {
+        const { name, value} =  e.target;
+        setpassword({
+            ...getpassword,
+            [name] : value
+        })
+    }
+
+    console.log(getpassword)
+
+
 
     return (
         <div className='password-main-section display-profile-setting'>
@@ -12,12 +29,12 @@ const ChangePasswordSetting = () => {
             <div className='password-section'>
                 <div className='pass-comfirm-profile'>
                     <div>
-                        <span>Password</span>
-                        <input placeholder='enter new password' />
+                        <span className='password-reset-title'>Password</span>
+                        <input placeholder='enter new password' name='password' onChange={setNewPassword} />
                     </div>
                     <div>
-                        <span>Confirm Password</span>
-                        <input placeholder='confirm password' />
+                        <span className='password-reset-title'>Confirm Password</span>
+                        <input placeholder='confirm password' name='confirmPassword' onChange={setNewPassword}  />
                     </div>
                 </div>
                 <button className='change-password-button'>Save Changes</button>
@@ -30,6 +47,8 @@ const ChangePasswordSetting = () => {
                         alt='logo'
                     />
                 )}
+                <p>{getpassword?.password}</p>
+                <p>{getpassword?.confirmPassword}</p>
             </div>
         </div>
     );

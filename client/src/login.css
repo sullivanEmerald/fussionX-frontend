@@ -1220,7 +1220,7 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  row-gap: 10px;
+  column-gap: 60px;
   margin-top: 15px;
 }
 
@@ -1252,7 +1252,7 @@
   color: #FFFFFF;
 }
 
-.profile-details input{
+.profile-details input {
   color: #FFFFFF;
   font-weight: 500px;
   font-size: 16px;
@@ -1262,6 +1262,25 @@
   padding: 5px;
   border: 1px solid #FF6C04;
   border-radius: 10px;
+}
+
+.profile-setting input {
+  width: 283px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #8E3A02;
+  opacity: 0px;
+  background: transparent;
+  color: #FFFFFF;
+  padding : 9.5px;
+}
+
+.pass-comfirm-profile > div {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 5px;
+
 }
 
 .profile-details input:focus, .profile-setting input:focus, .pass-comfirm-profile input:focus{
@@ -1322,9 +1341,13 @@
   height: 116px;
   width: 758px;
   border-radius: 10px;
-  padding: 30px;
   position: relative;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
+
 
 .password-sect{
   display: flex;
@@ -1338,8 +1361,8 @@
   position: absolute;
   right: 20px;
   top: 15px;
-  width: 122px;
-  height: 20px;
+  width: 94px;
+  height: 21px;
   border-radius: 15px;
   text-align: center;
   background: #FFC399;
@@ -1400,9 +1423,14 @@
   line-height: 18.23px;
 }
 
+.display-profile-setting{
+  position: relative;
+}
+
+
 .display-profile-setting input{
   width: 282px;
-  height: 40px;
+  height: 38px;
   border-radius: 8px;
   border: 1px solid #8E3A02;
   background: transparent;
@@ -1410,6 +1438,19 @@
   margin-right: 40px;
   color: #FFFFFF;
 }
+
+.password-reset-title{
+  font-family: DM Sans;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15.62px;
+  text-align: left;
+  color: #FFFFFF;
+  opacity: 70%;
+
+}
+
+
 
 .display-profile-setting input::placeholder{
     font-weight: 500px;
@@ -1420,8 +1461,10 @@
 
 .pass-comfirm-profile{
   display: flex;
-  flex-wrap: nowrap;
-  padding: 5px 0;
+  flex-wrap: wrap;
+  justify-content: flex-start; 
+  column-gap: 30px;
+  margin-top: 23px;
 }
 
 .pass-comfirm-profile input::placeholder{

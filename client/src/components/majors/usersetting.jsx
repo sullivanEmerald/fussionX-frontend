@@ -149,7 +149,11 @@ const UserSetting = () => {
                         {errors.phone && <span style={{ color: '#D76504' }}>{errors.phone}</span>}
                     </div>
                     
-                    <button disabled={isProcessing || Object.values(formData).some(value => value === '')} className='edit-button' type='submit'>{isProcessing ? <PreLoader stateCondition='Updating Record..' /> : 'Save Changes'}</button>
+                    <button 
+                        disabled={isProcessing || Object.values(formData).some(value => value === '')} 
+                        className='edit-button' type='submit'>
+                        {isProcessing ? <PreLoader stateCondition='Updating Record..' /> : 'Save Changes'}
+                    </button>
 
                 </form>
 
