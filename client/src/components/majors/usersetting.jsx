@@ -153,7 +153,7 @@ const UserSetting = () => {
 
                 </form>
 
-                {state.isToggle && <img onClick={() => dispatch({ type : ACTIONS.TOGGLE})} className='backButton-profile' src='images/dashboard/scrollUp.png' title='back to profile' alt='logo'/> }
+                {state.isToggle && <img onClick={() => dispatch({ type : APP_ACTIONS.TOGGLE, payload : !state.isToggle})} className='backButton-profile' src='images/dashboard/scrollUp.png' title='back to profile' alt='logo'/> }
         </div>
     )
 }

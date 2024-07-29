@@ -6,11 +6,12 @@ import { ACTIONS } from "../actions/app"
 const APP_REDUCER = (state, action) => {
 
     const { APP_ACTIONS} = ACTIONS;
+
     switch (action.type) {
       case APP_ACTIONS.TOGGLE :
         return {
           ...state,
-          isToggle : action.payload ?? !state.isToggle
+          isToggle : action.payload
         }
       case APP_ACTIONS.SET_IS_PASSWORD : 
         return {

@@ -4,7 +4,7 @@ import { ACTIONS } from "../../States/actions/app";
 
 const PasswordView = () => {    
     const { APP_ACTIONS} = ACTIONS;
-    const { dispatch } = useContext(ToggleFlips)
+    const {state, dispatch } = useContext(ToggleFlips)
 
     return (
         <>
@@ -16,7 +16,7 @@ const PasswordView = () => {
                     <img src="/images/icons/EyeClosed.png" alt="logo" /> 
                 </div>
                     <span>*************</span>
-                    <button className='change-password-button' onClick={() => dispatch({ type : APP_ACTIONS.SET_IS_PASSWORD, payload : true})}>Change password</button>
+                    <button className='change-password-button' onClick={() => dispatch({ type : APP_ACTIONS.SET_IS_PASSWORD, payload : !state.isPassword})}>Change password</button>
                 </div>
                            
          </div>

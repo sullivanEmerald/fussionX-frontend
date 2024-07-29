@@ -7,7 +7,7 @@ import { ACTIONS } from "../../States/actions/app";
 const UserProfileInformations = () => {
     const {APP_ACTIONS} =  ACTIONS;
     const { getUser } =  useContext(UserRecords)
-    const { dispatch } = useContext(ToggleFlips)
+    const { state, dispatch } = useContext(ToggleFlips)
     const [userProfile, setUserProfile] = useState(getUser)
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const UserProfileInformations = () => {
                         <p>Phone Number</p>
                         <span>(+234){userProfile.phone}</span>
                     </div>
-                <button onClick={() => dispatch({ type  : APP_ACTIONS.TOGGLE})} className='edit-button'>Edit Profile</button>
+                <button onClick={() => dispatch({ type  : APP_ACTIONS.TOGGLE, payload : !state.isToggle})} className='edit-button'>Edit Profile</button>
             </div>
         </>
     )

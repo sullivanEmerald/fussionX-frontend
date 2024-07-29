@@ -1,6 +1,6 @@
 
   import { Link, useNavigate } from 'react-router-dom';
-  import { User } from '../../routes/user';
+  // import { User } from '../../routes/user';
   import { useForm} from 'react-hook-form'
   import * as yup from 'yup'
   import { yupResolver} from '@hookform/resolvers/yup'
@@ -10,7 +10,7 @@
 
 
   const LoginForm = () => {
-      const { login } = User;
+      // const { login } = User;
       const navigate =  useNavigate()
       const[isProcessing, setProcessing] =  useState(false)
       const[isError, setError] = useState('') 
@@ -46,7 +46,7 @@
           setProcessing(true)
           setError('')
 
-          const response = await fetch(login, {
+          const response = await fetch('/login', {
               method :'POST',
               headers : {
                   'Content-Type' : 'application/json'

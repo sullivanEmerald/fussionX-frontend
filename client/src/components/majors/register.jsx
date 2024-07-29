@@ -5,11 +5,11 @@ import { yupResolver} from '@hookform/resolvers/yup'
 import { useState } from 'react';
 import '../../login.css'
 import { useUsers } from '../../context/user';
-import { User } from '../../routes/user';
+// import { User } from '../../routes/user';
 
 
 const RegisterForm = () => {
-    const { signup } = User;
+    // const { signup } = User;
     const navigate =  useNavigate()
     const {setUsers} = useUsers()
     const[isProcessing, setProcessing] =  useState(false)
@@ -50,7 +50,7 @@ const RegisterForm = () => {
 
           setError('')
           
-        const response = await fetch(signup, {
+        const response = await fetch('/register', {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json',

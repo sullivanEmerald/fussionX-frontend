@@ -23,7 +23,7 @@ const ChangePasswordSetting = () => {
                 <button className='change-password-button'>Save Changes</button>
                 {state.isPassword && (
                     <img
-                        onClick={() => dispatch({ type : APP_ACTIONS.SET_IS_PASSWORD, payload : true })}
+                        onClick={() => dispatch({ type : APP_ACTIONS.SET_IS_PASSWORD, playload : !state.isPassword })}
                         className='backButton-profile'
                         src='images/dashboard/scrollUp.png'
                         title='back to profile'
