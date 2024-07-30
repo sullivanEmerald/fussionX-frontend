@@ -1373,6 +1373,10 @@
   color: #030101;
 }
 
+.change-password-button:disabled{
+  cursor: not-allowed;
+}
+
 .account-details{
   width: 758px;
   height: 46px ;

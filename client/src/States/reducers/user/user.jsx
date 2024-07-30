@@ -1,5 +1,5 @@
 
-import { ACTIONS } from "../actions/app";
+import { ACTIONS } from "../../actions/app";
 
 const userReducer = (state, action) => {
     const { USER_ACTIONS } = ACTIONS;

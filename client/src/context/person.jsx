@@ -1,6 +1,6 @@
 import { useReducer } from "react"
 import { INITIALS } from "../States/initial-states/initial"
-import { userReducer } from "../States/reducers/user"
+import { userReducer } from "../States/reducers/user/user"
 import { UserState } from "../States/app-context/appContext"
 
 const UserProvider = ({ children }) => {

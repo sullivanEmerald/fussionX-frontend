@@ -11,6 +11,11 @@
 
     USER_STATE : {
         profilePicture : ''
+    },
+
+    PASSWORD_RESET : {
+      password : '',
+      confirmPassord : ''
     }
 
 }
