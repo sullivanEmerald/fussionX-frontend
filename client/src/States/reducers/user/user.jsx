@@ -9,10 +9,15 @@ const userReducer = (state, action) => {
                 ...state,
                 profilePicture : action.payload
             }
+        case USER_ACTIONS.RESET_PASSWORD:
+            return {
+                ...state,
+                [action.payload.name] : action.payload.value
+            }
         default :
 
         return state
     }
-}
+} 
 
 export {userReducer};

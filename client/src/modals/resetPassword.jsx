@@ -3,14 +3,14 @@ import ResetPasswordForm from '../components/majors/resetPassword';
 
 const ResetPassword = (props) => {
 
-    const { show, handleClose} = props
+    const { show, close , newPassword} = props
 
     return (
         <>
      
-        <Modal show={show} onHide={handleClose} dialogClassName="wallet-modal">
-
-            <ResetPasswordForm handleClose={handleClose} />
+        <Modal show={show} onHide={close} dialogClassName="wallet-modal">
+        
+            <ResetPasswordForm handleClose={close} {...newPassword} />
 
         </Modal>
 

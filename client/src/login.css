@@ -1275,13 +1275,13 @@
   padding : 9.5px;
 }
 
-.pass-comfirm-profile > div {
+/* .pass-comfirm-profile{
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   gap: 5px;
 
-}
+} */
 
 .profile-details input:focus, .profile-setting input:focus, .pass-comfirm-profile input:focus{
   border: 1px solid #FF6C04;
@@ -1432,30 +1432,6 @@
 }
 
 
-.display-profile-setting input{
-  width: 282px;
-  height: 38px;
-  border-radius: 8px;
-  border: 1px solid #8E3A02;
-  background: transparent;
-  padding: 2px 6px;
-  margin-right: 40px;
-  color: #FFFFFF;
-}
-
-.password-reset-title{
-  font-family: DM Sans;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 15.62px;
-  text-align: left;
-  color: #FFFFFF;
-  opacity: 70%;
-
-}
-
-
-
 .display-profile-setting input::placeholder{
     font-weight: 500px;
     font-size: 16px;
@@ -1466,13 +1442,47 @@
 .pass-comfirm-profile{
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; 
-  column-gap: 30px;
+  justify-content: flex-start;
   margin-top: 23px;
+  width: 100%;
+
 }
+
+.pass-comfirm-profile input{
+  width: 283px !important;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid #8E3A02;
+  background: transparent;
+  padding: 2px 6px;
+  color: #FFFFFF;
+}
+
+.pass-comfirm-profile > section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 35%;
+
+}
+
+.password-reset-title{
+  font-family: DM Sans;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15.62px;
+  text-align: left;
+  color: #FFFFFF;
+  opacity: 70%;
+  display: block;
+
+  position: absolute;
+}
+
 
 .pass-comfirm-profile input::placeholder{
   color: #8e8c8b;
+  font-size: 16px;
 }
 
 
@@ -1496,6 +1506,7 @@
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor:pointer;
 }
 
 .fund-transfer-modal{
@@ -1511,6 +1522,25 @@
   position: relative;
 }
 
+.password-reset-modal{
+  width: 501px;
+  height: 320px;
+  border-radius: 5px;
+  background: #2F2724;
+  position: relative;
+  padding: 30px;
+}
+
+.password-reset-modal > div{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  margin-bottom: 20px;
+}
+
+
 .transfer-button{
   width: 450px;
   height: 59px;
@@ -1518,6 +1548,23 @@
   text-align: center;
   padding: 10px;
   background: #FF6C04;
+}
+
+.confirm-button{
+  width: 450px;
+  height: 48px;
+  border-radius: 8px;
+  text-align: center;
+  padding: 10px;
+  background: #FF6C04;;
+}
+
+.password-error-handler{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 10rem;
 }
 
 .picture-upload-button{
@@ -1531,7 +1578,7 @@
   display: block;
 }
 
-.fund-transfer-modal input{
+.fund-transfer-modal input, .password-reset-modal input{
   width: 450px;
   height: 48px;
   border-radius: 8px;
@@ -1541,14 +1588,14 @@
   color: #FFFFFF;
 }
 
-.fund-transfer-modal > p {
+.fund-transfer-modal > p, .password-reset-modal p {
   font-weight: 500px;
   font-size: 20px;
   line-height: 26.04px;
   color: #FFFFFF;
 }
 
-.fund-transfer-modal > div span{
+.fund-transfer-modal > div span, .password-reset-modal > div span{
   font-weight: 400px;
   font-size: 14px;
   line-height: 18px;

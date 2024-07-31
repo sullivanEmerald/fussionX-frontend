@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { INITIALS } from "../initial-states/initial";
-const { INITIAL_STATE, USER_STATE, PASSWORD_RESET } = INITIALS
+const { INITIAL_STATE, USER_STATE } = INITIALS
 
 export const ToggleFlips = createContext({
     state : INITIAL_STATE,
@@ -13,7 +13,7 @@ export const UserState =  createContext({
 })
 
 
-export const PasswordReset = createContext({
-    passwordState : PASSWORD_RESET,
-    passwordDispatch : () => {},
-})
+// export const PasswordReset = createContext({
+//     passwordState : PASSWORD_RESET,
+//     passwordDispatch : () => {},
+// })
