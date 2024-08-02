@@ -15,9 +15,30 @@ const userReducer = (state, action) => {
                 [action.payload.name] : action.payload.value
             }
         default :
-
+        
         return state
     }
 } 
 
-export {userReducer};
+const TogglePasswordSeen = (state, action) => {
+        const { PASSWORD_VISIBILITY} = ACTIONS;
+    switch(action.type) {
+        case PASSWORD_VISIBILITY.IS_PASSWORD_VISIBLE: 
+            return {
+                ...state,
+                isPasswordVisible : !state.isPasswordVisible
+            }
+        case PASSWORD_VISIBILITY.IS_CONFIRM_PASSWORD_VISIBLE: 
+            return {
+                ...state,
+                isConfirmPasswordVisible : !state.isConfirmPasswordVisible
+            }
+        default : 
+
+        return state
+
+    }
+
+}
+
+export {userReducer, TogglePasswordSeen};

@@ -6,6 +6,9 @@ import { INITIALS } from '../../States/initial-states/initial';
 import { userReducer } from '../../States/reducers/user/user';
 import useModal from '../../hooks/password';
 import * as yup from 'yup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 
 // Validation schema
 const validationSchema = yup.object().shape({
@@ -22,15 +25,17 @@ const ChangePasswordSetting = () => {
     const [userState, userDispatch] = useReducer(userReducer, { ...INITIALS.USER_STATE, ...INITIALS.PASSWORD_RESET });
     const [showResetModal, openResetModal, closeResetModal] = useModal(false);
     const [errors, setErrors] = useState({});
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
 
     const setNewPassword = (e) => {
-        setErrors({})
+        setErrors({});
         const { name, value } = e.target;
-        userDispatch({ type: USER_ACTIONS.RESET_PASSWORD, payload: { name, value } });
+        userDispatch({ type: USER_ACTIONS.RESET_PASSWORD, payload: { name, value : value.trim()} });
     };
 
     const handleSaveChanges = async () => {
-            setErrors({});
+        setErrors({});
         try {
             await validationSchema.validate(userState, { abortEarly: false });
             setErrors({});
@@ -44,32 +49,59 @@ const ChangePasswordSetting = () => {
         }
     };
 
-    const { password, confirmPassword } = userState;
 
     return (
         <div className='password-main-section display-profile-setting'>
             <section className='password-error-handler'>
-            <p className='profile-header sub-headers'>Password Setting</p>
-            { errors !== null && <span className='error-message' >{ errors.password ? errors.password : errors.confirmPassword}</span>}
+                <p className='profile-header sub-headers'>Password Setting</p>
+                {errors !== null && (
+                    <span className='error-message'>
+                        {errors.password ? errors.password : errors.confirmPassword}
+                    </span>
+                )}
             </section>
             <div className='password-section'>
-            <form className='pass-comfirm-profile'>
-                <section>
-                    <p className='password-reset-title' for='password'>Password</p>
-                    <div class="input-group">
-                        <span class="input-group-text">@</span>
-                        <input type="text" class="form-control" id='password' placeholder="password" />
-                    </div>
-                </section>
+                <form className='pass-comfirm-profile'>
+                    <section>
+                        <label className='password-reset-title' htmlFor='password'>Password</label>
+                        <div className="input-group">
+                            <button type="button" className="input-group-text" onClick={() => setIsPasswordVisible((prev) => !prev)}>
+                                <FontAwesomeIcon 
+                                    icon={isPasswordVisible ? faEyeSlash : faEye}
+                                    className='password-reveal-button'
+                                />
+                            </button>
+                            <input
+                                type={isPasswordVisible ? "text" : "password"}
+                                className="form-control"
+                                id='password'
+                                placeholder="Enter new password"
+                                name='password'
+                                onChange={setNewPassword}
+                            />
+                        </div>
+                    </section>
 
-                <section>
-                    <p className='password-reset-title' for='confirmPassword'>Confirm Password</p> 
-                    <div class="input-group">
-                        <button class="input-group-text">@</button>
-                        <input type="text" id='confirmPassword' class="form-control" placeholder="confirmPassword" />
-                    </div>
-                </section>
-            </form>
+                    <section>
+                        <label className='password-reset-title' htmlFor='confirmPassword'>Confirm Password</label>
+                        <div className="input-group">
+                            <button type="button" className="input-group-text" onClick={() => setIsConfirmPasswordVisible((prev) => !prev)}>
+                                <FontAwesomeIcon 
+                                    icon={isConfirmPasswordVisible ? faEyeSlash : faEye}
+                                    className='password-reveal-button'
+                                />
+                            </button>
+                            <input
+                                type={isConfirmPasswordVisible ? "text" : "password"}
+                                id='confirmPassword'
+                                className="form-control"
+                                placeholder="Confirm password"
+                                name='confirmPassword'
+                                onChange={setNewPassword}
+                            />
+                        </div>
+                    </section>
+                </form>
                 <button
                     disabled={userState.password === '' || userState.confirmPassword === ''}
                     className='change-password-button'
@@ -88,7 +120,7 @@ const ChangePasswordSetting = () => {
                 )}
             </div>
             {showResetModal && (
-                <ResetPassword show={openResetModal} close={closeResetModal} newPassword={{ password, confirmPassword }} />
+                <ResetPassword show={openResetModal} close={closeResetModal} newPassword={{ password : userState.password}} />
             )}
         </div>
     );

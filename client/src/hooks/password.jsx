@@ -8,5 +8,4 @@ const useModal = (initialState = false) => {
   
     return [isModalOpen, openModal, closeModal];
   };
-  
   export default useModal;

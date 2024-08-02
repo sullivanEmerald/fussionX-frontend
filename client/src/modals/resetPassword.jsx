@@ -9,7 +9,7 @@ const ResetPassword = (props) => {
         <>
      
         <Modal show={show} onHide={close} dialogClassName="wallet-modal">
-        
+
             <ResetPasswordForm handleClose={close} {...newPassword} />
 
         </Modal>

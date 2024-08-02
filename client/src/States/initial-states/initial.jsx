@@ -16,6 +16,11 @@
     PASSWORD_RESET : {
       password : '',
       confirmPassord : ''
+    },
+
+    REVEAL_PASSWORD : {
+      isPasswordVisble : false,
+      isConfirmPasswordVisible : false,
     }
 
 }

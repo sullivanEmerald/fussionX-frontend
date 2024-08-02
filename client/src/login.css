@@ -1283,7 +1283,7 @@
 
 } */
 
-.profile-details input:focus, .profile-setting input:focus, .pass-comfirm-profile input:focus{
+.profile-details input:focus, .profile-setting input:focus{
   border: 1px solid #FF6C04;
   outline: none;
 }
@@ -1343,9 +1343,6 @@
   border-radius: 10px;
   position: relative;
   padding: 20px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
 }
 
 
@@ -1443,13 +1440,31 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-top: 23px;
+  margin-top: 15px;
   width: 100%;
+  column-gap:60px;
+}
 
+.pass-comfirm-profile .input-group .form-control:focus {
+  box-shadow: none;
+  border-color: #8E3A02;
+  background: transparent;
+  color: #FFFFFF;
+}
+
+.input-group-text{
+  background-color: transparent;
+  outline: none;
+  border: 1px solid #8E3A02;
+  color: #FF6C04;
+}
+
+.password-reveal-button{
+  max-width: 15px;
 }
 
 .pass-comfirm-profile input{
-  width: 283px !important;
+  width: 240px !important;
   height: 38px;
   border-radius: 8px;
   border: 1px solid #8E3A02;
@@ -1458,13 +1473,6 @@
   color: #FFFFFF;
 }
 
-.pass-comfirm-profile > section {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex-basis: 35%;
-
-}
 
 .password-reset-title{
   font-family: DM Sans;
@@ -1474,11 +1482,11 @@
   text-align: left;
   color: #FFFFFF;
   opacity: 70%;
-  display: block;
+  display: inline-block;
+  margin-bottom: 5px;
 
-  position: absolute;
+  
 }
-
 
 .pass-comfirm-profile input::placeholder{
   color: #8e8c8b;
@@ -1529,6 +1537,7 @@
   background: #2F2724;
   position: relative;
   padding: 30px;
+  font-family: DM Sans !important;
 }
 
 .password-reset-modal > div{
@@ -1540,6 +1549,32 @@
   margin-bottom: 20px;
 }
 
+.password-reset-modal input{
+  width: 450px;
+  height: 48px;
+  border-radius: 8px;
+  border: 0.5px solid #403D39;
+  padding-left: 10px;
+  background: transparent;
+  color: #FFFFFF;
+}
+
+.password-reset-modal input:focus{
+  box-shadow: none;
+  border: 0.5px solid #403D39;
+  background: transparent;
+  color: #FFFFFF;
+  
+}
+
+.password-reset-modal input::placeholder{
+  color: #FFFFFF;
+  opacity: 30%;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: DM Sans;
+}
+
 
 .transfer-button{
   width: 450px;
@@ -1548,6 +1583,15 @@
   text-align: center;
   padding: 10px;
   background: #FF6C04;
+}
+
+.reset-password-toggle{
+  border: 1px solid #403D39;
+  color:#FF6C04 ;
+  background: transparent;
+  padding: 10px;
+  border-radius: 10px;
+
 }
 
 .confirm-button{
@@ -1578,7 +1622,7 @@
   display: block;
 }
 
-.fund-transfer-modal input, .password-reset-modal input{
+.fund-transfer-modal input{
   width: 450px;
   height: 48px;
   border-radius: 8px;
@@ -1587,6 +1631,7 @@
   background: transparent;
   color: #FFFFFF;
 }
+
 
 .fund-transfer-modal > p, .password-reset-modal p {
   font-weight: 500px;
