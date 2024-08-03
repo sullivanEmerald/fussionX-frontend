@@ -1591,7 +1591,14 @@
   background: transparent;
   padding: 10px;
   border-radius: 10px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.reset-reveal-button{
+  font-size: 15px;
 }
 
 .confirm-button{
