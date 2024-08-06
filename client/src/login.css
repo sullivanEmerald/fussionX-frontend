@@ -1607,7 +1607,8 @@
   border-radius: 8px;
   text-align: center;
   padding: 10px;
-  background: #FF6C04;;
+  background: #FF6C04;
+  margin-top: 15px;
 }
 
 .password-error-handler{
