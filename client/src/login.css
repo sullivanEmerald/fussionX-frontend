@@ -1610,7 +1610,12 @@
   background: #FF6C04;
   margin-top: 15px;
 }
-
+.confirm-button:disabled{
+  cursor:not-allowed;
+  color: #FFFFFF;
+  opacity: 80%;
+  
+}
 .password-error-handler{
   display: flex;
   flex-wrap: wrap;
