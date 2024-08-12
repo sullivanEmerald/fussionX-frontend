@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 
-// Validation schema
 const validationSchema = yup.object().shape({
     password: yup.string().required('Password is required'),
     confirmPassword: yup
@@ -56,7 +55,7 @@ const ChangePasswordSetting = () => {
                 <p className='profile-header sub-headers'>Password Setting</p>
                 {errors !== null && (
                     <span className='error-message'>
-                        {errors.password ? errors.password : errors.confirmPassword}
+                        {errors.password || errors.confirmPassword || errors.message}
                     </span>
                 )}
             </section>
@@ -120,7 +119,7 @@ const ChangePasswordSetting = () => {
                 )}
             </div>
             {showResetModal && (
-                <ResetPassword show={openResetModal} close={closeResetModal} newPassword={{ password : userState.password}} />
+                <ResetPassword show={openResetModal} close={closeResetModal} newPassword={{ password : userState.password}} setPasswordError={setErrors}/>
             )}
         </div>
     );

@@ -12,6 +12,11 @@ export const UserState =  createContext({
     userDispatch  : () => {},
 })
 
+export const ErrorState = createContext({
+    error : '',
+    setError : () => {},
+})
+
 
 // export const PasswordReset = createContext({
 //     passwordState : PASSWORD_RESET,
