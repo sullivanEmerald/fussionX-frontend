@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState } from 'react';
+import React, { useContext, useReducer, useState, useEffect } from 'react';
 import { ToggleFlips } from '../../States/app-context/appContext';
 import { ACTIONS } from '../../States/actions/app';
 import ResetPassword from '../../modals/resetPassword';
@@ -47,6 +47,14 @@ const ChangePasswordSetting = () => {
             setErrors(validationErrors);
         }
     };
+
+    useEffect(() => {
+        const passwordErrorTimer = setTimeout(() => {
+            setErrors(null)
+        }, 5000)
+
+        return () => clearTimeout(passwordErrorTimer)
+    }, [errors])
 
 
     return (

@@ -21,6 +21,7 @@ const ResetPasswordForm = ({ handleClose, setPasswordError, newPassword }) => {
         setOldPassword(value.trim());
     };
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsProcessing(true);
