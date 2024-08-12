@@ -1,10 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import PreLoader from './laoder';
 import { useNavigate } from 'react-router-dom';
+import { ACTIONS } from '../../States/actions/app';
+import { ToggleFlips } from '../../States/app-context/appContext';
 
 const ResetPasswordForm = ({ handleClose, setPasswordError, newPassword }) => {
+    const { APP_ACTIONS} = ACTIONS;
+    const {state, dispatch} = useContext(ToggleFlips)
     const [isOldPasswordVisible, setOldPasswordVisible] = useState(false);
     const [oldPassword, setOldPassword] = useState('');
     const [error, setError] = useState('');
@@ -60,6 +64,7 @@ const ResetPasswordForm = ({ handleClose, setPasswordError, newPassword }) => {
 
             const { msg } = await response.json();
             handleClose()
+            dispatch({ type : APP_ACTIONS.SET_USER_RETURNED_MESSAGE, payload : true})
             setPasswordError({ message : msg})
 
             

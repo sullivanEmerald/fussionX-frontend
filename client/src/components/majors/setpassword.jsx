@@ -54,7 +54,7 @@ const ChangePasswordSetting = () => {
             <section className='password-error-handler'>
                 <p className='profile-header sub-headers'>Password Setting</p>
                 {errors !== null && (
-                    <span className='error-message'>
+                    <span style={{ color : state.userReturnedMessage ? 'green' : 'red'}}>
                         {errors.password || errors.confirmPassword || errors.message}
                     </span>
                 )}
