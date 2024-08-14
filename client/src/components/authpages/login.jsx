@@ -4,9 +4,11 @@ import BallShadow from "../../ballshadow";
 
 const Login = () => {
     return (
+
         <>  
-            <BallShadow component={LoginForm} />
+            <BallShadow />
             
+            <LoginForm />
         </>
     )
 }

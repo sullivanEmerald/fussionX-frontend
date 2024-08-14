@@ -4,10 +4,11 @@ import BallShadow from '../../ballshadow';
 const Register = () => {
     return (
         <>
-            <BallShadow component={RegisterForm} />
+            <BallShadow />
+
+            <RegisterForm />
         </>
     )
 }
-
 
 export default Register;
