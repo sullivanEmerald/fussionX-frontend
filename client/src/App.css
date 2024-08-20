@@ -6,7 +6,7 @@
   src: url('../public/fonts/NeueMachina-Regular.otf');
 }
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -836,12 +836,6 @@ button {
 }
 
 
-.Unleash-section {
-  flex-basis: 50%;
-  max-height: 100vh;
-  position: fixed;
-}
-
 .login-form-section {
   position: absolute;
   right: 10%;
@@ -851,19 +845,12 @@ button {
 
 .login .login-img {
   max-height: 100vh;
-  width: 800px;
+  width: 846px;
   object-fit: cover;
   position: absolute;
-}
-
-.login .blur {
-  height: 848px;
-  width: 625px;
-  border-radius: 0 20px 20px 0;
-  backdrop-filter: blur(20px);
-  background: linear-gradient(to bottom, rgba(29, 23, 21, 0.63), rgba(255, 255, 255, 0.12));
 
 }
+
 
 .drop {
   position: absolute;

@@ -15,11 +15,9 @@ const BallShadow = () => {
         <div className="login auth-controller-logo relative">
             <section className="Unleash-section relative">
                 <img className="login-img" src="/images/soccerball.png" alt="fussionX football" />
-                <div className="relative blur">
-                    <section className="relative ball-content">
-                        <img src="/images/logo.png" alt="logo" />
-                        <p>Unleash the Power of AI for Accurate Football Predictions!</p>   
-                    </section>
+                <div className="blur">
+                        <img src="/images/logo.png" alt="logo" /> 
+                        <span className='blur-text'>Unleash the Power of AI for Accurate Football Predictions!</span>
                 </div>
             </section>
         </div>

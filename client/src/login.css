@@ -10,7 +10,12 @@
 
 @font-face {
   font-family: 'NeueMachina';
-  src: url('../public/fonts/NeueMachina-Regular.otf');
+  src: url('../public/fonts/NeueMachina-Ultrabold.otf');
+}
+
+@font-face {
+  font-family: 'PP Neue Machina';
+  src: url('../public/fonts/NeueMachina/NeueMachina-Regular.otf');
 }
 
 .remove-style-button {
@@ -35,18 +40,20 @@
 } */
 
 
-.login-form{
+.login-form {
   display: flex;
   flex-direction: column;
 }
 
-.register, .login-form {
+.register,
+.login-form {
   position: absolute;
   top: 10%;
   right: 8%;
 }
 
-.register>p, .login-form > p{
+.register>p,
+.login-form>p {
   font-family: DM Sans;
   font-weight: 700;
   font-size: 32px;
@@ -62,7 +69,8 @@
   margin-top: 15px;
 }
 
-.register form>input, .login-form form>input {
+.register form>input,
+.login-form form>input {
   width: 450px;
   height: 48px;
   border-radius: 8px;
@@ -73,11 +81,13 @@
   color: #FFFFFF;
 }
 
-.register form>input:focus, .login-form form>input:focus {
+.register form>input:focus,
+.login-form form>input:focus {
   background-color: transparent;
 }
 
-.register form>input::placeholder, .login-form form>input::placeholder {
+.register form>input::placeholder,
+.login-form form>input::placeholder {
   font-family: DM Sans;
   font-weight: 400px;
   font-size: 16px;
@@ -86,7 +96,8 @@
   opacity: 30%;
 }
 
-.register form>P, .login-form form>P {
+.register form>P,
+.login-form form>P {
   font-family: DM Sans;
   font-size: 14px;
   line-height: 18px;
@@ -122,7 +133,7 @@
   margin: 10px 0;
 }
 
-.login-button{
+.login-button {
   width: 450px;
   height: 59px;
   border-radius: 8px;
@@ -134,11 +145,11 @@
 }
 
 
-.reg-button:disabled{
+.reg-button:disabled {
   cursor: not-allowed;
   color: #FFFFFF;
   opacity: 90%;
-  font-family:DM Sans ;
+  font-family: DM Sans;
   font-size: 20px;
 }
 
@@ -1729,17 +1740,56 @@
   background-size: cover;
 }
 
-.ball-content {
-  font-weight: 800;
+.Unleash-section {
+  flex-basis: 50%;
+  max-height: 100vh;
+  position: fixed;
+}
+
+.login .blur {
+  height: 848px;
+  width: 663px;
+  border-radius: 0 20px 20px 0;
+  backdrop-filter: blur(20px);
+  background: linear-gradient(to bottom, rgba(29, 23, 21, 0.63), rgba(255, 255, 255, 0.12));
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 40px;
+  padding-top: 30%;
+  font-weight:800;
   font-size: 38px;
   line-height: 44.84px;
   text-align: center;
 }
 
-
-.ball-content>img {
-  margin-bottom: 30px;
+.blur-text{
+  display: inline-block;
+  width: 70%;
 }
+/* .ball-content {
+  font-weight:800;
+  font-size: 38px;
+  line-height: 44.84px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  border: 1px solid red;
+  color: rgba(255, 255, 255, 1);
+  font-family : 'PP Neue Machina' !important;
+  max-width: 50%;
+  object-fit: cover;
+
+} */
+
+
+
+
+/* .ball-content>img {
+  margin-bottom: 30px;
+} */
 
 
 /* VERIFICATION */
