@@ -28,6 +28,11 @@ const APP_REDUCER = (state, action) => {
           ...state,
           userReturnedMessage  : action.payload
         }
+      case APP_ACTIONS.SET_IS_USER_lOGGED:
+        return {
+          ...state,
+          isUserLogedIn : action.payload
+        }
         default :
         
          return state

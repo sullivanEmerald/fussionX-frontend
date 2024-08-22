@@ -6,11 +6,12 @@
       isPassword : false,
       errorMessage  : '',
       userReturnedMessage : false,
-      
+      isUserLogedIn : false
     },
 
     USER_STATE : {
-        profilePicture : ''
+        profilePicture : '',
+        userProfileInformaton : null
     },
 
     PASSWORD_RESET : {

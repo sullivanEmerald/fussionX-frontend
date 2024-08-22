@@ -41,7 +41,6 @@ export const UserRecords = createContext({
 function App() {
   const [islogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [getUser, setUser] = useState(null);
 
   useEffect(() => {
     // Check localStorage for isAdmin and isUser flags when the app loads
@@ -60,7 +59,6 @@ function App() {
         setIsLogged(true);
       }
 
-      setUser(userLocalStorage);
     }
   }, [setIsAdmin, setIsLogged]);
 
@@ -68,7 +66,6 @@ function App() {
   return (
     <LoginContext.Provider value={{ islogged, setIsLogged }}>
       <AdminContext.Provider value={{ isAdmin, setIsAdmin }}>
-        <UserRecords.Provider value={{ getUser, setUser }}>
           <PredictionProvider>
             <Router>
               <Routes>
@@ -93,7 +90,6 @@ function App() {
               </Routes>
           </Router> 
           </PredictionProvider>
-        </UserRecords.Provider>
       </AdminContext.Provider>
     </LoginContext.Provider>
   );

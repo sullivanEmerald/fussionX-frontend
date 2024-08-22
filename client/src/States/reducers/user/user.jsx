@@ -2,7 +2,9 @@
 import { ACTIONS } from "../../actions/app";
 
 const userReducer = (state, action) => {
+
     const { USER_ACTIONS } = ACTIONS;
+
     switch(action.type) {
         case USER_ACTIONS.SET_PROFILE_PICTURE:
             return {
@@ -14,6 +16,11 @@ const userReducer = (state, action) => {
                 ...state,
                 [action.payload.name] : action.payload.value
             }
+        case USER_ACTIONS.SET_USER_PROFLE_INFORMATION:
+            return {
+                ...state,
+                userProfileInformation : action.payload
+            }
         default :
         
         return state
@@ -21,7 +28,9 @@ const userReducer = (state, action) => {
 } 
 
 const TogglePasswordSeen = (state, action) => {
-        const { PASSWORD_VISIBILITY} = ACTIONS;
+
+    const { PASSWORD_VISIBILITY} = ACTIONS;
+
     switch(action.type) {
         case PASSWORD_VISIBILITY.IS_PASSWORD_VISIBLE: 
             return {
