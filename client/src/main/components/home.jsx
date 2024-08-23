@@ -1,5 +1,5 @@
-import Default from "../components/default";
-import '../App'
+import Default from "../../components/default";
+import '../../App'
 
 const Home = () => {
     return ( 

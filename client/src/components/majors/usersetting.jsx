@@ -1,33 +1,32 @@
 
-import { UserRecords } from '../../App';
-import { useState, useEffect, useContext} from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useUsers } from '../../context/user';
-import { ToggleFlips } from '../../States/app-context/appContext';
+import { ToggleFlips, UserState } from '../../States/app-context/appContext';
 import * as validate from 'yup';
 import PreLoader from './laoder';
 import { ACTIONS } from '../../States/actions/app';
 
 const UserSetting = () => {
-    const { APP_ACTIONS } =  ACTIONS;
-    const {state, dispatch} = useContext(ToggleFlips)
-    const {getUser, setUser} = useContext(UserRecords)
-    const {users, setUsers} = useUsers()
+    const { APP_ACTIONS, USER_ACTIONS } = ACTIONS;
+    const { state, dispatch } = useContext(ToggleFlips)
+    const { userState, userDispatch } = useContext(UserState)
+    const { users, setUsers } = useUsers()
     const [isProcessing, setIsProcessing] = useState(false)
     const [user, setCurrrentUser] = useState({})
     const [formData, setFormData] = useState({
-        firstname : '',
-        surname : '',
-        email : '',
-        phone  : ''
+        firstname: '',
+        surname: '',
+        email: '',
+        phone: ''
     })
 
-     useEffect(() => {
-        const userId = getUser.id;
-        const currentUser = users.find((user) => user._id === userId);
+    useEffect(() => {
+        const { _id } = userState.userProfileInformation 
+        const currentUser = users.find((user) => user._id === _id);
         setCurrrentUser(currentUser);
-    }, [getUser, users]);
+    }, [userState.userProfileInformation , users]);
 
- 
+
     useEffect(() => {
         setFormData({
             firstname: user?.name || '',
@@ -37,7 +36,7 @@ const UserSetting = () => {
         });
     }, [user]);
 
-   
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -51,11 +50,11 @@ const UserSetting = () => {
     const [errors, setErrors] = useState('')
 
 
-    const validationSchema =  validate.object({
-        firstname : validate.string().required('firstname is required'),
-        surname : validate.string().required('surname is requried'),
+    const validationSchema = validate.object({
+        firstname: validate.string().required('firstname is required'),
+        surname: validate.string().required('surname is requried'),
         email: validate.string().email('enter the right email format').required('email field is required'),
-        phone : validate.string().matches(/^\d{11}$/, "phone number must be 11 digits")
+        phone: validate.string().matches(/^\d{11}$/, "phone number must be 11 digits")
     })
 
 
@@ -66,55 +65,55 @@ const UserSetting = () => {
 
         try {
 
-            await validationSchema.validate(formData, {abortEarly : false})
+            await validationSchema.validate(formData, { abortEarly: false })
 
             await setIsProcessing(true)
 
             await setErrors('')
-            
+
             const response = await fetch(`/users/update/${user._id}`, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(formData)
-                    });
-            
-                    if (!response.ok) {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
 
-                        const {error} = await response.json();
+            if (!response.ok) {
 
-                         dispatch({ type : APP_ACTIONS.SET_USER_RETURNED_MESSAGE, payload : false});
+                const { error } = await response.json();
 
-                        dispatch({ type : APP_ACTIONS.SET_ERROR_MESSAGE, payload : error})
+                dispatch({ type: APP_ACTIONS.SET_USER_RETURNED_MESSAGE, payload: false });
 
-                    } else {
+                dispatch({ type: APP_ACTIONS.SET_ERROR_MESSAGE, payload: error })
 
-                        const { msg } = await response.json();
+            } else {
 
-                        const { firstname, surname, email, phone, } = formData;
+                const { msg } = await response.json();
 
-                        setUsers((previousUsers) => previousUsers.map((item) => item._id === user._id ? {...item, name : firstname, surname : surname, email : email, phone : phone} : item))
+                const { firstname, surname, email, phone, } = formData;
 
-                        const updatedUser = {...getUser, name: firstname, surname: surname, email: email, phone: phone };
+                setUsers((previousUsers) => previousUsers.map((item) => item._id === user._id ? { ...item, name: firstname, surname: surname, email: email, phone: phone } : item))
 
-                        setUser(updatedUser);
+                const updatedUser = { ...userState.userProfileInformation, name: firstname, surname: surname, email: email, phone: phone };
 
-                        dispatch({ type : APP_ACTIONS.TOGGLE})
+                userDispatch({ type : USER_ACTIONS.SET_USER_PROFLE_INFORMATION, payload : updatedUser})
 
-                        dispatch({ type :  APP_ACTIONS.SET_USER_RETURNED_MESSAGE, payload : true});
+                dispatch({ type: APP_ACTIONS.TOGGLE })
 
-                        dispatch({ type  :  APP_ACTIONS.SET_ERROR_MESSAGE , payload: msg});
+                dispatch({ type: APP_ACTIONS.SET_USER_RETURNED_MESSAGE, payload: true });
 
-                    }
-        } catch (error) {   
+                dispatch({ type: APP_ACTIONS.SET_ERROR_MESSAGE, payload: msg });
+
+            }
+        } catch (error) {
             const newError = {}
-            
+
             error.inner.forEach((err) => {
                 newError[err.path] = err.message
-             });
+            });
 
-             setErrors(newError)
+            setErrors(newError)
 
         } finally {
             setIsProcessing(false)
@@ -123,41 +122,41 @@ const UserSetting = () => {
 
     };
     return (
-         <div className='profile-setting'>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <p>Name</p>
-                        <input value={formData.firstname} type='text' onChange={handleChange} name='firstname' />
-                        {errors.firstname && <span style={{ color: '#D76504' }}>{errors.firstname}</span>}
-                    </div>
+        <div className='profile-setting'>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <p>Name</p>
+                    <input value={formData.firstname} type='text' onChange={handleChange} name='firstname' />
+                    {errors.firstname && <span style={{ color: '#D76504' }}>{errors.firstname}</span>}
+                </div>
 
-                    <div>
-                        <p>Surname</p>
-                        <input value={formData.surname} type='text' name='surname' onChange={handleChange} />
-                        {errors.surname && <span style={{ color: '#D76504' }}>{errors.surname}</span>}
-                    </div>
+                <div>
+                    <p>Surname</p>
+                    <input value={formData.surname} type='text' name='surname' onChange={handleChange} />
+                    {errors.surname && <span style={{ color: '#D76504' }}>{errors.surname}</span>}
+                </div>
 
-                    <div>
-                        <p>email</p>
-                        <input type='text' value={formData.email} onChange={handleChange} name='email'  />
-                        {errors.email && <span style={{ color: '#D76504' }}>{errors.email}</span>}
-                    </div>
+                <div>
+                    <p>email</p>
+                    <input type='text' value={formData.email} onChange={handleChange} name='email' />
+                    {errors.email && <span style={{ color: '#D76504' }}>{errors.email}</span>}
+                </div>
 
-                    <div>
-                        <p>Phone Number</p>
-                        <input type='text' value={formData.phone} onChange={handleChange} name='phone' />
-                        {errors.phone && <span style={{ color: '#D76504' }}>{errors.phone}</span>}
-                    </div>
-                    
-                    <button 
-                        disabled={isProcessing || Object.values(formData).some(value => value === '')} 
-                        className='edit-button' type='submit'>
-                        {isProcessing ? <PreLoader stateCondition='Updating Record..' /> : 'Save Changes'}
-                    </button>
+                <div>
+                    <p>Phone Number</p>
+                    <input type='text' value={formData.phone} onChange={handleChange} name='phone' />
+                    {errors.phone && <span style={{ color: '#D76504' }}>{errors.phone}</span>}
+                </div>
 
-                </form>
+                <button
+                    disabled={isProcessing || Object.values(formData).some(value => value === '')}
+                    className='edit-button' type='submit'>
+                    {isProcessing ? <PreLoader stateCondition='Updating Record..' /> : 'Save Changes'}
+                </button>
 
-                {state.isToggle && <img onClick={() => dispatch({ type : APP_ACTIONS.TOGGLE, payload : !state.isToggle})} className='backButton-profile' src='images/dashboard/scrollUp.png' title='back to profile' alt='logo'/> }
+            </form>
+
+            {state.isToggle && <img onClick={() => dispatch({ type: APP_ACTIONS.TOGGLE, payload: !state.isToggle })} className='backButton-profile' src='images/dashboard/scrollUp.png' title='back to profile' alt='logo' />}
         </div>
     )
 }

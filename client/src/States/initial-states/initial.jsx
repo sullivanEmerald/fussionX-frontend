@@ -11,7 +11,7 @@
 
     USER_STATE : {
         profilePicture : '',
-        userProfileInformaton : null
+        userProfileInformation : null
     },
 
     PASSWORD_RESET : {

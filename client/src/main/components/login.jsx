@@ -1,4 +1,4 @@
-import LoginForm from "../majors/login";
+import LoginForm from "../../components/majors/login";
 import BallShadow from "../../ballshadow";
 
 

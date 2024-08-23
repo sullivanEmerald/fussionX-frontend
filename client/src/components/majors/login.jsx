@@ -4,21 +4,21 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useState, useContext } from 'react';
-import { LoginContext, AdminContext, UserRecords } from '../../App'
 import PreLoader from './laoder';
 import '../../login.css'
+import { ACTIONS } from '../../States/actions/app';
+import { ToggleFlips, UserState } from '../../States/app-context/appContext';
+
 
 
 const LoginForm = () => {
-  // const { login } = User;
+  const { APP_ACTIONS, USER_ACTIONS } = ACTIONS;
+  const { dispatch } = useContext(ToggleFlips)
+  const { userDispatch } = useContext(UserState)
   const navigate = useNavigate()
   const [isProcessing, setProcessing] = useState(false)
   const [isError, setError] = useState('')
 
-
-  const { setIsLogged } = useContext(LoginContext)
-  const { setIsAdmin } = useContext(AdminContext)
-  const { setUser } = useContext(UserRecords)
 
   const Schema = yup.object().shape({
     identity: yup
@@ -39,61 +39,48 @@ const LoginForm = () => {
   });
 
 
-
   const onSubmit = async (data, e) => {
     e.preventDefault()
 
     setProcessing(true)
     setError('')
 
-    const response = await fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
+    try {
+
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
 
 
-    if (!response.ok) {
+      if (!response.ok) {
+
+        const { err } = response.json()
+
+        setError(err)
+
+      } else {
+        const { user } = response.json()
+
+        await localStorage.setItem('user', JSON.stringify(user))
+
+        dispatch({ type: APP_ACTIONS.SET_IS_USER_lOGGED, payload: true })
+
+        userDispatch({ type: USER_ACTIONS.SET_USER_PROFLE_INFORMATION, payload: user })
+
+        navigate('/dashboard', { replace: true });
+
+      }
+
+    } catch (error) {
+
+    } finally {
       setProcessing(false)
-
-      const { status } = response
-      if (status === 404) {
-        setError('Entered a wrong email or password')
-      } else if (status === 401) {
-        setError('Authentication failed')
-      } else {
-        setError('Network Error')
-      }
     }
 
-    const loginData = await response.json()
-    const { status } = response;
-    const { user } = loginData;
-
-    if (status === 200) {
-      const userData = {
-        id: user._id,
-        name: user.name,
-        surname: user.surname,
-        phone: user.phone,
-        email: user.email,
-        role: user.role,
-      };
-
-      localStorage.setItem('user', JSON.stringify(userData));
-
-
-      if (user.role) {
-        setIsAdmin(true)
-      } else {
-        setIsLogged(true);
-      }
-
-      setUser(userData);
-      navigate(user.role ? '/admin' : '/dashboard', { replace: true });
-    }
   }
 
   return (

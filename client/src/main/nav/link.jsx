@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-const Navigation = () => {
+
+const MainNavigateLinks = () => {
   return (
         <div className='navigation'>
             <Link className='navLink'>Why FusionX</Link>
@@ -11,4 +12,4 @@ const Navigation = () => {
   );
 }
 
-export default Navigation;
+export default MainNavigateLinks;

@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { UserRecords } from "../App";
 import UploadProfilePicture from "../modals/profile";
 import UpdateProfileImage from "./profile/image";
 import { UserState } from "../States/app-context/appContext";
@@ -8,7 +7,6 @@ import ChangeProfilePicture from "../modals/renew";
 
 
 const ProfileDisplay = () => {
-  const { getUser } = useContext(UserRecords);
   const [isShowForm, setShowForm] = useState(false);
   const {userState} = useContext(UserState)
    
@@ -21,12 +19,7 @@ const ProfileDisplay = () => {
   };
 
 
-  if (!getUser) {
-
-    return <p>Loading...</p>;
-  }
-
-  const { name, surname } = getUser;
+  const { name, surname } = userState.userProfileInformation;
 
   
 

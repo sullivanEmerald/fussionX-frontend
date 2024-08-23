@@ -1,13 +1,13 @@
 
 import { useState, useContext } from "react";
 import WalletModal from "../../modals/wallet";
-import { UserRecords} from "../../App";
+import { UserState } from "../../States/app-context/appContext";
 import UpdateProfileImage from "./image";
 
 
 const Header = () => {
-    const {getUser} =  useContext(UserRecords)
-    const { name, surname} = getUser;
+    const { userState} = useContext(UserState)
+    const { name, surname} = userState.userProfileInformation;
     const [showWallet, setShowWallet] = useState(false);
 
     const showModal = () => {
