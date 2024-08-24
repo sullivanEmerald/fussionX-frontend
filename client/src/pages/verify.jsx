@@ -1,5 +1,5 @@
 
-import BallShadow from '../ballshadow';
+import BallShadow from '../background/ballshadow';
 import Verification from '../components/majors/verify';
 
 const VerifyRoute = () => {

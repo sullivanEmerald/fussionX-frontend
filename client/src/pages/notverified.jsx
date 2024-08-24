@@ -1,5 +1,5 @@
 
-import BallShadow from '../ballshadow';
+import BallShadow from '../background/ballshadow';
 import IsNotVerified from '../components/majors/notverify';
 
 const Notverified = () => {

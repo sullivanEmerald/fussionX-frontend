@@ -1,5 +1,6 @@
-import LoginForm from "../../components/majors/login";
-import BallShadow from "../../ballshadow";
+
+import LoginForm from '../auth/login'
+import BallShadow from '../../background/ballshadow';
 
 
 const Login = () => {

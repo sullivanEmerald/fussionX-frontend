@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useState, useContext } from 'react';
-import PreLoader from './laoder';
+import PreLoader from '../../components/majors/laoder';
 import '../../login.css'
 import { ACTIONS } from '../../States/actions/app';
 import { ToggleFlips, UserState } from '../../States/app-context/appContext';

@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useState } from 'react';
 import '../../login.css'
 import { useUsers } from '../../context/user';
-import PreLoader from './laoder';
+import PreLoader from '../../components/majors/laoder';
 
 
 const RegisterForm = () => {

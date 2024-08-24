@@ -1,5 +1,5 @@
-import RegisterForm from '../majors/register';
-import BallShadow from '../../ballshadow';
+import RegisterForm from '../auth/register';
+import BallShadow from '../../background/ballshadow';
 
 const Register = () => {
     return (
