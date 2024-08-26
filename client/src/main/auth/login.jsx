@@ -58,12 +58,19 @@ const LoginForm = () => {
 
       if (!response.ok) {
 
-        const { err } = response.json()
+        const { error } = await response.json()
 
-        setError(err)
+        console.log(error)
+
+        console.log(response)
+
+        setError(error || 'Error Occurred relating to Network. please, check your Network connection')
 
       } else {
-        const { user } = response.json()
+
+        const { user } = await response.json()
+
+        console.log(user)
 
         await localStorage.setItem('user', JSON.stringify(user))
 

@@ -2,6 +2,9 @@
 // import User from './components/authpages/user';
 import './App.css'
 import APP_ROUTES from './main/routes/main';
+import { useEffect, useContext } from 'react';
+import { ToggleFlips, UserState } from './States/app-context/appContext';
+import { ACTIONS } from './States/actions/app';
 // import Profile from './pages/profile';
 // import Search from './pages/search';
 // import Bonus from './pages/bonus';
@@ -19,30 +22,26 @@ import APP_ROUTES from './main/routes/main';
 
 
 function App() {
+  const { USER_ACTIONS, APP_ACTIONS } = ACTIONS;
+  const { dispatch } = useContext(ToggleFlips)
+  const { userDispatch } = useContext(UserState)
 
-  // useEffect(() => {
-  //   // Check localStorage for isAdmin and isUser flags when the app loads
-  //   const userLocalStorage = JSON.parse(localStorage.getItem('user') || '{}');
+  useEffect(() => {
+    const userLocalStorage = JSON.parse(localStorage.getItem('user') || '{}');
 
-  //   if (!userLocalStorage || Object.keys(userLocalStorage).length === 0) {
-  //     setIsAdmin(false);
-  //     setIsLogged(false);
-  //     setUser(null);
-  //   } else {
-  //     if (userLocalStorage.role) {
-  //       setIsAdmin(true);
-  //       setIsLogged(true);
-  //     } else {
-  //       setIsAdmin(false);
-  //       setIsLogged(true);
-  //     }
-
-  //   }
-  // }, []);
+    if (!userLocalStorage || Object.keys(userLocalStorage).length === 0) {
+      dispatch({ type: APP_ACTIONS.SET_IS_USER_lOGGED, payload: false })
+      userDispatch({ type: USER_ACTIONS.SET_USER_PROFLE_INFORMATION, payload: null });
+    } else {
+      dispatch({ type: APP_ACTIONS.SET_IS_USER_lOGGED, payload: true })
+      dispatch({ type: USER_ACTIONS.SET_USER_PROFLE_INFORMATION, payload: userLocalStorage })
+    }
+  }, []);
 
 
   return (
-      <APP_ROUTES />
+
+    <APP_ROUTES />
   );
 }
 
