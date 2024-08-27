@@ -1,6 +1,6 @@
 
 import LoginForm from '../auth/login'
-import BallShadow from '../../background/ballshadow';
+import BallShadow from '../../../background/ballshadow';
 
 
 const Login = () => {

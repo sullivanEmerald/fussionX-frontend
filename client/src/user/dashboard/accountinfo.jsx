@@ -1,11 +1,11 @@
 
 import { useState, useContext } from "react";
-import WalletModal from "../../modals/wallet";
-import { UserState } from "../../States/app-context/appContext";
+import WalletModal from "../modals/wallet";
+import { UserState } from "../States/app-context/appContext";
 import UpdateProfileImage from "./image";
 
 
-const Header = () => {
+const AcountInformation = () => {
     const { userState} = useContext(UserState)
     const { name, surname} = userState.userProfileInformation;
     const [showWallet, setShowWallet] = useState(false);
@@ -18,7 +18,7 @@ const Header = () => {
         setShowWallet(false)
     }
      return (
-        <>  
+        <> 
                         <div className="upper-section">
                             <div>
                                 <span className="wallet-balance">Wallet Balance</span>
@@ -55,4 +55,4 @@ const Header = () => {
 }
 
 
-export default Header;
+export default AcountInformation;

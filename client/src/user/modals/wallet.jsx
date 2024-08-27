@@ -1,5 +1,5 @@
 import { Modal } from 'react-bootstrap';
-import FundWalletForm from '../components/majors/fund';
+import FundWalletForm from './components/fund';
 
 const WalletModal = (props) => {
     const {show, handleClose} =  props

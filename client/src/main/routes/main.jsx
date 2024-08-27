@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ShowNavigationRoute from "../middleware/majorroutes";
-import { FUSSION, FAQ, PRICING, CONTACT, HOME, REGISTER, LOGIN } from '../page/pages'
+import { FUSSION, FAQ, PRICING, CONTACT, HOME } from '../page/pages'
 
 const APP_ROUTES = () => {
     return (
@@ -14,8 +14,6 @@ const APP_ROUTES = () => {
                 </Route>
 
                 <Route path="/" element={HOME} />
-                <Route path="/login" element={LOGIN} />
-                <Route path="/register" element={REGISTER} />
             </Routes>
         </Router>
     )

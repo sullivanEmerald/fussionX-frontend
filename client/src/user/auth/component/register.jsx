@@ -4,8 +4,8 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useState } from 'react';
 import '../../login.css'
-import { useUsers } from '../../context/user';
-import PreLoader from '../../components/majors/laoder';
+import { useUsers } from '../../../context/user';
+import PreLoader from '../../../components/majors/laoder';
 
 
 const RegisterForm = () => {

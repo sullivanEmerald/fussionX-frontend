@@ -3,8 +3,9 @@
 import './App.css'
 import APP_ROUTES from './main/routes/main';
 import { useEffect, useContext } from 'react';
-import { ToggleFlips, UserState } from './States/app-context/appContext';
-import { ACTIONS } from './States/actions/app';
+import { ToggleFlips, UserState } from './user/States/app-context/appContext'
+import { ACTIONS } from './user/States/actions/app';
+import UserLoggedRoutes from './user/routes/user';
 // import Profile from './pages/profile';
 // import Search from './pages/search';
 // import Bonus from './pages/bonus';
@@ -23,7 +24,7 @@ import { ACTIONS } from './States/actions/app';
 
 function App() {
   const { USER_ACTIONS, APP_ACTIONS } = ACTIONS;
-  const { dispatch } = useContext(ToggleFlips)
+  const { state, dispatch } = useContext(ToggleFlips)
   const { userDispatch } = useContext(UserState)
 
   useEffect(() => {
@@ -40,8 +41,11 @@ function App() {
 
 
   return (
-
-    <APP_ROUTES />
+    <>
+      {
+       state.isUserLoggedIn ? <UserLoggedRoutes /> : <APP_ROUTES />
+      }
+    </>
   );
 }
 

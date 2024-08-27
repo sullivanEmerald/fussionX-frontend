@@ -31,7 +31,7 @@ const APP_REDUCER = (state, action) => {
       case APP_ACTIONS.SET_IS_USER_lOGGED:
         return {
           ...state,
-          isUserLogedIn : action.payload
+          isUserLoggedIn : action.payload
         }
         default :
         

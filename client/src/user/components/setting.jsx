@@ -9,9 +9,7 @@ import ChangePasswordSetting from '../majors/setpassword';
 
 
 const ProfileInformations = () => {
-    // const {users} =  useUsers() 
-    // const {getUser} =  useContext(UserRecords)
-    // const [userInfo, setUserInfo] = useState({})
+
     const { state } = useContext(ToggleFlips)
       
     // useEffect(() => {

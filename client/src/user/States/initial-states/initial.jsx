@@ -6,7 +6,7 @@
       isPassword : false,
       errorMessage  : '',
       userReturnedMessage : false,
-      isUserLogedIn : false
+      isUserLoggedIn : false
     },
 
     USER_STATE : {

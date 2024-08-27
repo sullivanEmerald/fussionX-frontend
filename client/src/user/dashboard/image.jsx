@@ -1,8 +1,8 @@
 
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { UserState, ToggleFlips } from "../../States/app-context/appContext";
-import { ACTIONS } from "../../States/actions/app";
+import { UserState, ToggleFlips } from "../States/app-context/appContext";
+import { ACTIONS } from "../States/actions/app";
 
 const UpdateProfileImage = () => {
     const {APP_ACTIONS} = ACTIONS;

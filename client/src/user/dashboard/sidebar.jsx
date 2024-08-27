@@ -1,8 +1,8 @@
-import ProfileImage from "../profile-image";
+import ProfileImage from "../../components/profile-image";
 import {Link} from 'react-router-dom'
-import ToggleInteface from "../../functions/toggle";
+import ToggleInteface from "../functions/toggle";
 
-const Aside = () => {
+const UserNavigation = () => {
     
     return  (
         <>
@@ -52,4 +52,4 @@ const Aside = () => {
 }
 
 
-export default Aside;
+export default UserNavigation;
