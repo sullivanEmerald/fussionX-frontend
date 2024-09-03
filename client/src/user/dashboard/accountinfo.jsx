@@ -7,7 +7,7 @@ import UpdateProfileImage from "./image";
 
 const AcountInformation = () => {
     const { userState} = useContext(UserState)
-    const { name, surname} = userState.userProfileInformation;
+   console.log(userState)
     const [showWallet, setShowWallet] = useState(false);
 
     const showModal = () => {

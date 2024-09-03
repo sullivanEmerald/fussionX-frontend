@@ -18,7 +18,7 @@ import UserLoggedRoutes from './user/routes/user';
 // import ResetPasssword from './pages/reset';
 // import AdminIndexPage from './admin/pages/home';
 // import AdminRoute from './middleware/secureadmin';
-// import { PredictionProvider } from './context/predictions';
+
 
 
 
@@ -35,16 +35,18 @@ function App() {
       userDispatch({ type: USER_ACTIONS.SET_USER_PROFLE_INFORMATION, payload: null });
     } else {
       dispatch({ type: APP_ACTIONS.SET_IS_USER_lOGGED, payload: true })
-      dispatch({ type: USER_ACTIONS.SET_USER_PROFLE_INFORMATION, payload: userLocalStorage })
+      dispatch({ type: USER_ACTIONS.SET_USER_PROFILE_INFORMATION, payload: userLocalStorage })
     }
   }, []);
+  
 
+  if(state.isUserLoggedIn) return <UserLoggedRoutes />
 
   return (
     <>
-      {
-       state.isUserLoggedIn ? <UserLoggedRoutes /> : <APP_ROUTES />
-      }
+
+      <APP_ROUTES />
+
     </>
   );
 }

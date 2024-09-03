@@ -1,5 +1,5 @@
+import LogoImage from '../../components/logo';
 import { useEffect } from 'react';
-
 const BallShadow = () => {
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const BallShadow = () => {
             <section className="Unleash-section relative">
                 <img className="login-img" src="/images/soccerball.png" alt="fussionX football" />
                 <div className="blur">
-                        <img src="/images/logo.png" alt="logo" /> 
+                        <LogoImage />
                         <span className='blur-text'>Unleash the Power of AI for Accurate Football Predictions!</span>
                 </div>
             </section>

@@ -4,10 +4,10 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useState, useContext } from 'react';
-import PreLoader from '../../components/majors/laoder';
-import '../../login.css'
-import { ACTIONS } from '../../user/States/actions/app';
-import { ToggleFlips, UserState } from '../../user/States/app-context/appContext';
+import PreLoader from '../../../components/majors/laoder';
+import '../../../login.css'
+import { ACTIONS } from '../../../user/States/actions/app';
+import { ToggleFlips, UserState } from '../../../user/States/app-context/appContext'
 
 
 
@@ -58,19 +58,21 @@ const LoginForm = () => {
 
       if (!response.ok) {
 
-        const { error }  = await response.json()
+        const { error } = await response.json()
 
-        setError(error !==  '' ? error : 'Error Occurred relating to Network. please, check your Network connection')
+        setError(error !== '' ? error : 'Error Occurred relating to Network. please, check your Network connection')
 
       } else {
 
         const { user } = await response.json()
 
+        console.log(user)
+
         await localStorage.setItem('user', JSON.stringify(user))
 
-        dispatch({ type: APP_ACTIONS.SET_IS_USER_lOGGED, payload: true })
+        await dispatch({ type: APP_ACTIONS.SET_IS_USER_lOGGED, payload: true })
 
-        userDispatch({ type: USER_ACTIONS.SET_USER_PROFLE_INFORMATION, payload: user })
+        await userDispatch({ type: USER_ACTIONS.SET_USER_PROFILE_INFORMATION, payload: user })
 
         console.log(state.isUserLoggedIn)
 

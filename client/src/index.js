@@ -1,23 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { UsersProvider } from './context/user';
-import { ImageProvider } from './context/image';
-
-
-// this will be taken to the user ROUTESS
-// import AppProvider from './user/context/main';
-
+// import { ImageProvider } from './context/image';
+import AppProvider from './context/main';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <UsersProvider>
-      <ImageProvider>
+    <AppProvider>
           <App />
-      </ImageProvider>
-      </UsersProvider>
+    </AppProvider>
   </React.StrictMode>
 );
 

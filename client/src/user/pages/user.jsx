@@ -1,15 +1,11 @@
 import Regular from "../components/dashboard";
-import Login from "../auth/pages/login";
-import Register from "../auth/pages/register";
-
 
 const USER_ROUTES = {
 
     DASHBOARD : <Regular />,
-    REGISTER : <Register />,
-    LOGIN : <Login />
+
 }
 
-const { DASHBOARD, REGISTER, LOGIN } = USER_ROUTES;
+const { DASHBOARD } = USER_ROUTES;
 
-export {DASHBOARD, REGISTER, LOGIN}
+export {DASHBOARD}

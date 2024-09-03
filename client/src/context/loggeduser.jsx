@@ -1,7 +1,7 @@
 import { useReducer } from "react"
-import { INITIALS } from "../States/initial-states/initial"
-import { userReducer } from "../States/reducers/user/user"
-import { UserState } from "../States/app-context/appContext"
+import { INITIALS } from "../user/States/initial-states/initial"
+import { userReducer } from "../user/States/reducers/user/user"
+import { UserState } from "../user/States/app-context/appContext"
 
 const UserProvider = ({ children }) => {
 

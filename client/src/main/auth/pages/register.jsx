@@ -1,4 +1,4 @@
-import RegisterForm from '../auth/register';
+import RegisterForm from  '../component/register'
 import BallShadow from '../../background/ballshadow';
 
 const Register = () => {
