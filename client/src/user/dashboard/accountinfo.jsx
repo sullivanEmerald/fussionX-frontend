@@ -7,8 +7,13 @@ import UpdateProfileImage from "./image";
 
 const AcountInformation = () => {
     const { userState} = useContext(UserState)
-   console.log(userState)
+    
     const [showWallet, setShowWallet] = useState(false);
+
+
+    if(userState.userProfileInformation === null || userState.userProfileInformation === undefined ) return <p>USER OBJECT IS EMPTY</p>
+
+    const { name, surname} = useState;
 
     const showModal = () => {
         setShowWallet(true)

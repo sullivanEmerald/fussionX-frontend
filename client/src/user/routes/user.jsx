@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UserProfileHeaderAndSideBar from '../navbar/user';
 import { DASHBOARD } from '../pages/user';
-import UserProvider from '../context/user';
+import UserProvider from '../../context/loggeduser';
 
 const UserLoggedRoutes = () => {
     return (
@@ -13,9 +13,6 @@ const UserLoggedRoutes = () => {
                 </Routes>
             </UserProvider>
         </Router>
-
-
-
     );
 }
 

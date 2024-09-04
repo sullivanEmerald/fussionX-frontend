@@ -4,13 +4,11 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useState } from 'react';
 import '../../../login.css'
-import { useUsers } from '../../../context/user';
 import PreLoader from '../../../components/majors/laoder';
 
 
 const RegisterForm = () => {
     const navigate = useNavigate()
-    const { setUsers } = useUsers()
     const [isProcessing, setProcessing] = useState(false)
     const [isError, setError] = useState('')
 
@@ -69,11 +67,11 @@ const RegisterForm = () => {
         setProcessing(false)
 
         const { user } = await response.json()
-        const { status } = response
-        setUsers(prevUsers => prevUsers.length ? [...prevUsers, user] : [user]);
-        if (status === 200) {
+        console.log(user)
+        // const { status } = response
+        // setUsers(prevUsers => prevUsers.length ? [...prevUsers, user] : [user]);
             navigate('/login', { replace: true })
-        }
+        
     }
 
 

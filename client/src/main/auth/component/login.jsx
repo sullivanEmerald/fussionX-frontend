@@ -3,22 +3,23 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import PreLoader from '../../../components/majors/laoder';
 import '../../../login.css'
 import { ACTIONS } from '../../../user/States/actions/app';
-import { ToggleFlips, UserState } from '../../../user/States/app-context/appContext'
+import { ToggleFlips, UserState } from '../../../user/States/app-context/appContext';
 
 
 
 const LoginForm = () => {
   const { APP_ACTIONS, USER_ACTIONS } = ACTIONS;
   const { state, dispatch } = useContext(ToggleFlips)
-  const { userDispatch } = useContext(UserState)
+  const { userState, userDispatch } = useContext(UserState)
   const navigate = useNavigate()
   const [isProcessing, setProcessing] = useState(false)
   const [isError, setError] = useState('')
 
+ console.log(userState.userProfileInformation)
 
   const Schema = yup.object().shape({
     identity: yup
@@ -66,13 +67,12 @@ const LoginForm = () => {
 
         const { user } = await response.json()
 
-        console.log(user)
-
         await localStorage.setItem('user', JSON.stringify(user))
 
-        await dispatch({ type: APP_ACTIONS.SET_IS_USER_lOGGED, payload: true })
+        userDispatch({ type: USER_ACTIONS.SET_USER_PROFILE_INFORMATION, payload: user })
 
-        await userDispatch({ type: USER_ACTIONS.SET_USER_PROFILE_INFORMATION, payload: user })
+        dispatch({ type: APP_ACTIONS.SET_IS_USER_lOGGED, payload: true })
+
 
         console.log(state.isUserLoggedIn)
 

@@ -32,7 +32,7 @@ function App() {
 
     if (!userLocalStorage || Object.keys(userLocalStorage).length === 0) {
       dispatch({ type: APP_ACTIONS.SET_IS_USER_lOGGED, payload: false })
-      userDispatch({ type: USER_ACTIONS.SET_USER_PROFLE_INFORMATION, payload: null });
+      userDispatch({ type: USER_ACTIONS.SET_USER_PROFILE_INFORMATION, payload: null });
     } else {
       dispatch({ type: APP_ACTIONS.SET_IS_USER_lOGGED, payload: true })
       dispatch({ type: USER_ACTIONS.SET_USER_PROFILE_INFORMATION, payload: userLocalStorage })

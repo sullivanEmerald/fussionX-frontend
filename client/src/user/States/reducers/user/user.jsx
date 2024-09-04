@@ -16,7 +16,7 @@ const userReducer = (state, action) => {
                 ...state,
                 [action.payload.name] : action.payload.value
             }
-        case USER_ACTIONS.SET_USER_PROFLE_INFORMATION:
+        case USER_ACTIONS.SET_USER_PROFILE_INFORMATION:
             return {
                 ...state,
                 userProfileInformation : action.payload
