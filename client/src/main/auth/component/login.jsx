@@ -15,7 +15,6 @@ const LoginForm = () => {
   const navigate = useNavigate()
   const [isProcessing, setProcessing] = useState(false)
   const [isError, setError] = useState('')
-  const [shouldNavigate, setShouldNavigate] = useState(false)
 
   const Schema = yup.object().shape({
     identity: yup
@@ -36,12 +35,12 @@ const LoginForm = () => {
   });
 
   useEffect(() => {
-    if (shouldNavigate && userState.userProfileInformation && Object.keys(userState.userProfileInformation).length > 0) {
-      console.log(userState.userProfileInformation);
+    if (userState.userProfileInformation && Object.keys(userState.userProfileInformation).length > 0) {
+      console.log('Navigating to dashboard with user data:', userState.userProfileInformation);
       dispatch({ type: APP_ACTIONS.SET_IS_USER_lOGGED, payload: true });
       navigate('/dashboard', { replace: true });
     }
-  }, [userState.userProfileInformation, shouldNavigate, dispatch, navigate]);
+  }, [userState.userProfileInformation, navigate]);
 
   const onSubmit = async (data, e) => {
     e.preventDefault()
@@ -62,9 +61,13 @@ const LoginForm = () => {
         setError(error !== '' ? error : 'Error Occurred relating to Network. please, check your Network connection')
       } else {
         const { user } = await response.json()
+
         await localStorage.setItem('user', JSON.stringify(user))
+
         userDispatch({ type: USER_ACTIONS.SET_USER_PROFILE_INFORMATION, payload: user })
-        setShouldNavigate(true)
+
+        
+
       }
     } catch (error) {
       setError('An unexpected error occurred. Please try again.')

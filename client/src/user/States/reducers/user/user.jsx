@@ -7,53 +7,53 @@ const userReducer = (state, action) => {
 
     console.log('User Reducer Action:', action); // Debugging purpose
 
-    switch(action.type) {
+    switch (action.type) {
         case USER_ACTIONS.SET_PROFILE_PICTURE:
             return {
                 ...state,
-                profilePicture : action.payload
+                profilePicture: action.payload
             }
         case USER_ACTIONS.RESET_PASSWORD:
             return {
                 ...state,
-                [action.payload.name] : action.payload.value
+                [action.payload.name]: action.payload.value
             }
         case USER_ACTIONS.SET_USER_PROFILE_INFORMATION:
 
             console.log('Setting user profile info:', action.payload);
-            
+
             return {
                 ...state,
-                userProfileInformation : {...action.payload}
+                userProfileInformation: { ...action.payload }
             }
 
-        default :
-        
-        return state
+        default:
+
+            return state
     }
-} 
+}
 
 const TogglePasswordSeen = (state, action) => {
 
-    const { PASSWORD_VISIBILITY} = ACTIONS;
+    const { PASSWORD_VISIBILITY } = ACTIONS;
 
-    switch(action.type) {
-        case PASSWORD_VISIBILITY.IS_PASSWORD_VISIBLE: 
+    switch (action.type) {
+        case PASSWORD_VISIBILITY.IS_PASSWORD_VISIBLE:
             return {
                 ...state,
-                isPasswordVisible : !state.isPasswordVisible
+                isPasswordVisible: !state.isPasswordVisible
             }
-        case PASSWORD_VISIBILITY.IS_CONFIRM_PASSWORD_VISIBLE: 
+        case PASSWORD_VISIBILITY.IS_CONFIRM_PASSWORD_VISIBLE:
             return {
                 ...state,
-                isConfirmPasswordVisible : !state.isConfirmPasswordVisible
+                isConfirmPasswordVisible: !state.isConfirmPasswordVisible
             }
-        default : 
+        default:
 
-        return state
+            return state
 
     }
 
 }
 
-export {userReducer, TogglePasswordSeen};
+export { userReducer, TogglePasswordSeen };

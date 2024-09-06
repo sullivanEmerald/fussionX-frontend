@@ -1,18 +1,30 @@
 
 // import Predictions from "../../components/profile/predictions";
 import { UserState } from "../States/app-context/appContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { ACTIONS } from "../States/actions/app";
 
 const Regular = () => {
-    const { userState } = useContext(UserState)
 
-    console.log(userState.userProfileInformation)
+    const { USER_ACTIONS } = ACTIONS;
+
+    const { userState, userDispatch } = useContext(UserState)
+
+    useEffect(() => {
+        if (!userState.userProfileInformation || Object.keys(userState.userProfileInformation).length === 0) {
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) {
+                const user = JSON.parse(storedUser);
+                userDispatch({ type: USER_ACTIONS.SET_USER_PROFILE_INFORMATION, payload: user });
+            }
+        }
+    }, [userState.userProfileInformation, userDispatch]);
+
     return (
-        <>  
-
-                    <p>Sullivan the greatest software engineer</p>
-                    <p>God is great Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, voluptatum eligendi earum praesentium illum voluptate dolorum pariatur? Modi neque quasi, ipsa officiis iusto quaerat, facilis amet officia qui obcaecati doloribus.</p>
-                    <p style={{ textAlign : 'center'}}>Lorem consectetur adipisicing elit. Illo, voluptatum eligendi earum praesentium illum voluptate dolorum pariatur? Modi neque quasi, ipsa officiis iusto quaerat, facilis amet officia qui obcaecati doloribus </p>
+        <>
+            <div style={{ position : 'absolute', top : '5px'}}>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis eos laudantium sit aliquam saepe libero, sint vero itaque doloremque veniam aperiam dolore, a nobis explicabo culpa voluptatum dolorum error alias.</p>
+            </div>
 
         </>
     )

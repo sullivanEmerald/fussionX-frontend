@@ -4,10 +4,14 @@ import UserNavigation from "../dashboard/sidebar"
 const UserProfileHeaderAndSideBar = () => {
     return (
         <>
-            <AcountInformation />
 
             <UserNavigation />
-        </> 
+
+
+            <AcountInformation />
+
+
+        </>
     )
 }
 

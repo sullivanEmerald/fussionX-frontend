@@ -1,10 +1,10 @@
 import ProfileImage from "../../components/profile-image";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ToggleInteface from "../functions/toggle";
 
 const UserNavigation = () => {
-    
-    return  (
+
+    return (
         <>
             <section className="aside-container">
                 <div className="image-con">
@@ -13,28 +13,28 @@ const UserNavigation = () => {
 
                 <div className="aside-links">
                     <div>
-                        <Link to={'/dashboard'} className="links"><img src="/images/sideicons/home.png" className="link-icons" alt="logo" /> 
-                            <span>Home</span> 
+                        <Link to={'/dashboard'} className="links"><img src="/images/sideicons/home.png" className="link-icons" alt="logo" />
+                            <span>Home</span>
                         </Link>
                     </div>
                     <div className="ai-section">
-                        <Link className="links"><img src="/images/sideicons/ai.png" className="link-icons" alt="logo" /> 
-                             <span>AI</span>
+                        <Link className="links"><img src="/images/sideicons/ai.png" className="link-icons" alt="logo" />
+                            <span>AI</span>
                         </Link>
                         <p>Coming soon</p>
                     </div>
                     <div>
-                        <Link to={'/subscribtion'} className="links"><img src="/images/sideicons/sub.png" className="link-icons" alt="logo" /> 
+                        <Link to={'/subscribtion'} className="links"><img src="/images/sideicons/sub.png" className="link-icons" alt="logo" />
                             <span>Subscribtion</span>
                         </Link>
                     </div>
                     <div>
-                        <Link to={'/payment'} className="links"><img src="/images/sideicons/pay.png" className="link-icons" alt="logo" /> 
+                        <Link to={'/payment'} className="links"><img src="/images/sideicons/pay.png" className="link-icons" alt="logo" />
                             <span>Payment History</span>
                         </Link>
                     </div>
                     <div>
-                        <Link to={'/bonus'} className="links"><img src="/images/sideicons/bonus.png" className="link-icons" alt="logo" /> 
+                        <Link to={'/bonus'} className="links"><img src="/images/sideicons/bonus.png" className="link-icons" alt="logo" />
                             <span>Bonus</span>
                         </Link>
                     </div>
@@ -45,8 +45,8 @@ const UserNavigation = () => {
                     </div>
                 </div>
             </section>
-            
-        
+
+
         </>
     )
 }

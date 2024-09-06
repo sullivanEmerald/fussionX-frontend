@@ -190,10 +190,22 @@
 /************************************************************************
   DASHBOARD
 *************************************************************************/
+
+.userNavigationLayout{
+  display: flex;
+  height: 100vh;
+}
+
+.userNavigationInformation{
+  flex-grow: 1; 
+  margin: 22px 0  0 48px; 
+}
+
 .upper-section {
   background: #160F08;
   border-radius: 14px;
-
+  width: calc(100% - 224px);
+  height: 99px;
   display: flex;
   justify-content: space-between;
   padding: 20px 30px;
@@ -346,9 +358,11 @@
   font-family: DM Sans;
   width: 224px;
   background: #160F08;
-  height: 848px;
+  height: 976px;
   max-height: 100vh;
   position: fixed;
+  left: 0;
+  top: 0;
 }
 
 .aside-links {
@@ -1757,16 +1771,17 @@
   flex-direction: column;
   row-gap: 40px;
   padding-top: 30%;
-  font-weight:800;
+  font-weight: 800;
   font-size: 38px;
   line-height: 44.84px;
   text-align: center;
 }
 
-.blur-text{
+.blur-text {
   display: inline-block;
   width: 70%;
 }
+
 /* .ball-content {
   font-weight:800;
   font-size: 38px;
