@@ -5,7 +5,7 @@ import { ACTIONS } from "../actions/app"
 
 const APP_REDUCER = (state, action) => {
 
-    const { APP_ACTIONS} = ACTIONS;
+    const { APP_ACTIONS } = ACTIONS;
 
     switch (action.type) {
       case APP_ACTIONS.TOGGLE :
@@ -29,6 +29,7 @@ const APP_REDUCER = (state, action) => {
           userReturnedMessage  : action.payload
         }
       case APP_ACTIONS.SET_IS_USER_lOGGED:
+        console.log('USER lOGGED STATUS', action.payload)
         return {
           ...state,
           isUserLoggedIn : action.payload

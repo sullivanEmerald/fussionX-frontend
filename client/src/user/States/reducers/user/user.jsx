@@ -5,6 +5,8 @@ const userReducer = (state, action) => {
 
     const { USER_ACTIONS } = ACTIONS;
 
+    console.log('User Reducer Action:', action); // Debugging purpose
+
     switch(action.type) {
         case USER_ACTIONS.SET_PROFILE_PICTURE:
             return {
@@ -17,10 +19,14 @@ const userReducer = (state, action) => {
                 [action.payload.name] : action.payload.value
             }
         case USER_ACTIONS.SET_USER_PROFILE_INFORMATION:
+
+            console.log('Setting user profile info:', action.payload);
+            
             return {
                 ...state,
-                userProfileInformation : action.payload
+                userProfileInformation : {...action.payload}
             }
+
         default :
         
         return state

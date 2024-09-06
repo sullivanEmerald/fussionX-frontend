@@ -11,10 +11,7 @@
 
     USER_STATE : {
         profilePicture : '',
-        userProfileInformation : {
-          name  : 'Sullivan',
-          surname  : 'Amadike'
-        }
+        userProfileInformation : {}
     },
 
     PASSWORD_RESET : {

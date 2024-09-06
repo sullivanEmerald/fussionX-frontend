@@ -5,15 +5,18 @@ import { UserState } from "../user/States/app-context/appContext"
 
 const UserProvider = ({ children }) => {
 
-    const { USER_STATE } = INITIALS;
+    const { USER_STATE, PASSWORD_RESET } = INITIALS;
 
-    const [userState, userDispatch] = useReducer(userReducer, USER_STATE)
+    const [userState, userDispatch] = useReducer(userReducer, {
+        ...USER_STATE,
+        ...PASSWORD_RESET
+    })
 
     return (
-        <UserState.Provider value={{ userState, userDispatch}}>
+        <UserState.Provider value={{ userState, userDispatch }}>
             {children}
         </UserState.Provider>
-    ) 
+    )
 }
 
 export default UserProvider;

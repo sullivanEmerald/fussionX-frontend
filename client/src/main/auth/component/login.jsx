@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -9,8 +8,6 @@ import '../../../login.css'
 import { ACTIONS } from '../../../user/States/actions/app';
 import { ToggleFlips, UserState } from '../../../user/States/app-context/appContext';
 
-
-
 const LoginForm = () => {
   const { APP_ACTIONS, USER_ACTIONS } = ACTIONS;
   const { state, dispatch } = useContext(ToggleFlips)
@@ -18,8 +15,7 @@ const LoginForm = () => {
   const navigate = useNavigate()
   const [isProcessing, setProcessing] = useState(false)
   const [isError, setError] = useState('')
-
- console.log(userState.userProfileInformation)
+  const [shouldNavigate, setShouldNavigate] = useState(false)
 
   const Schema = yup.object().shape({
     identity: yup
@@ -39,15 +35,20 @@ const LoginForm = () => {
     resolver: yupResolver(Schema)
   });
 
+  useEffect(() => {
+    if (shouldNavigate && userState.userProfileInformation && Object.keys(userState.userProfileInformation).length > 0) {
+      console.log(userState.userProfileInformation);
+      dispatch({ type: APP_ACTIONS.SET_IS_USER_lOGGED, payload: true });
+      navigate('/dashboard', { replace: true });
+    }
+  }, [userState.userProfileInformation, shouldNavigate, dispatch, navigate]);
 
   const onSubmit = async (data, e) => {
     e.preventDefault()
-
     setProcessing(true)
     setError('')
 
     try {
-
       const response = await fetch('/login', {
         method: 'POST',
         headers: {
@@ -56,36 +57,20 @@ const LoginForm = () => {
         body: JSON.stringify(data)
       })
 
-
       if (!response.ok) {
-
         const { error } = await response.json()
-
         setError(error !== '' ? error : 'Error Occurred relating to Network. please, check your Network connection')
-
       } else {
-
         const { user } = await response.json()
-
         await localStorage.setItem('user', JSON.stringify(user))
-
         userDispatch({ type: USER_ACTIONS.SET_USER_PROFILE_INFORMATION, payload: user })
-
-        dispatch({ type: APP_ACTIONS.SET_IS_USER_lOGGED, payload: true })
-
-
-        console.log(state.isUserLoggedIn)
-
-        navigate('/dashboard', { replace: true });
-
+        setShouldNavigate(true)
       }
-
     } catch (error) {
-
+      setError('An unexpected error occurred. Please try again.')
     } finally {
       setProcessing(false)
     }
-
   }
 
   return (
