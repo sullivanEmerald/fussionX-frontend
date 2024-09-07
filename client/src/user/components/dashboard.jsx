@@ -22,10 +22,7 @@ const Regular = () => {
 
     return (
         <>
-            <div style={{ position : 'absolute', top : '5px'}}>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis eos laudantium sit aliquam saepe libero, sint vero itaque doloremque veniam aperiam dolore, a nobis explicabo culpa voluptatum dolorum error alias.</p>
-            </div>
-
+            <p>Sullivan, the greatest software Engineer</p>
         </>
     )
 }

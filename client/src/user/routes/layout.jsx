@@ -1,14 +1,25 @@
+import UserNavigation from "../dashboard/sidebar";
+import AcountInformation from "../dashboard/accountinfo";
 
 const Layout = ({ children }) => (
-    <div className="page-layout">
-      <UserNavigation />
-      <div className="main-container">
-        <AcountInformation />
-        <main className="content-area">
-          {children}
+
+    <section className="dashboard-layout">
+
+        <UserNavigation />
+
+        <main className="dashboard-header">
+
+            <AcountInformation />
+
+            <section className="dashboard-main-content">
+
+                {children}
+
+            </section>
+
         </main>
-      </div>
-    </div>
-  );
+        
+    </section>
+);
 
 export default Layout;

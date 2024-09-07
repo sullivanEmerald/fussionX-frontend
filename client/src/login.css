@@ -191,25 +191,36 @@
   DASHBOARD
 *************************************************************************/
 
-.userNavigationLayout{
+.dashboard-layout {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
-.userNavigationInformation{
-  flex-grow: 1; 
-  margin: 22px 0  0 48px; 
+.dashboard-header{
+  flex-grow: 1;
+  margin-left: 224px; 
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+  position: relative;
+}
+
+.dashboard-main-content{
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto; 
 }
 
 .upper-section {
+  width: 1119px;
   background: #160F08;
   border-radius: 14px;
-  width: calc(100% - 224px);
   height: 99px;
   display: flex;
   justify-content: space-between;
   padding: 20px 30px;
   font-family: DM Sans;
+  margin:22px auto;
 }
 
 .wallet-balance {
@@ -354,15 +365,14 @@
 }
 
 .aside-container {
-  padding: 20px;
-  font-family: DM Sans;
   width: 224px;
   background: #160F08;
-  height: 976px;
-  max-height: 100vh;
   position: fixed;
   left: 0;
   top: 0;
+  height: 100vh;
+  padding: 20px;
+  font-family: DM Sans;
 }
 
 .aside-links {
