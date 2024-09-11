@@ -1,7 +1,9 @@
 import Layout from "../routes/layout"
-import { Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom";
+
 
 const IsUserRoute = () => {
+
     return (
         <>
             <Layout>

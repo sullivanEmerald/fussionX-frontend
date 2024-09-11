@@ -1,14 +1,11 @@
-
-// import Predictions from "../../components/profile/predictions";
 import { UserState } from "../States/app-context/appContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { ACTIONS } from "../States/actions/app";
+import Predictions from "../sections/predictions";
 
 const Regular = () => {
-
     const { USER_ACTIONS } = ACTIONS;
-
-    const { userState, userDispatch } = useContext(UserState)
+    const { userState, userDispatch } = useContext(UserState);
 
     useEffect(() => {
         if (!userState.userProfileInformation || Object.keys(userState.userProfileInformation).length === 0) {
@@ -20,10 +17,12 @@ const Regular = () => {
         }
     }, [userState.userProfileInformation, userDispatch]);
 
+
     return (
         <>
-            <p>Sullivan, the greatest software Engineer</p>
+            <Predictions />
         </>
-    )
-}
+    );
+};
+
 export default Regular;

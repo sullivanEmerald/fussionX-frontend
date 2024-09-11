@@ -3,7 +3,7 @@ import AcountInformation from "../dashboard/accountinfo";
 
 const Layout = ({ children }) => (
 
-    <section className="dashboard-layout">
+   <section className="dashboard-layout">
 
         <UserNavigation />
 
